@@ -17,6 +17,9 @@ dependencies:
   # dotenv
   flutter_dotenv: ^5.0.2
 
+  # DI
+  provider: ^6.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
