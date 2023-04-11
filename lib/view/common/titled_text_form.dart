@@ -24,34 +24,42 @@ class TitledTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ColorTheme.backgroundSubColor,
-        borderRadius: BorderRadius.circular(SizeTheme.borderRadiusSize),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: SizeTheme.paddingMiddleSize,
-          horizontal: SizeTheme.paddingLargeSize,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: SizeTheme.paddingMiddleSize,
+            horizontal: SizeTheme.paddingLargeSize,
+          ),
+          child: Row(
+            children: [
+              Icon(
+                prefixIcon,
+                size: SizeTheme.iconMiddleSize,
+                color: ColorTheme.itemSubColor,
+              ),
+              const SizedBox(
+                width: SizeTheme.paddingMiddleSize,
+              ),
+              Text(
+                labelText ?? "",
+                style: TextStyleTheme.textMainStyleSmall,
+              ),
+            ],
+          ),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  prefixIcon,
-                  size: SizeTheme.iconMiddleSize,
-                  color: ColorTheme.itemSubColor,
-                ),
-                const SizedBox(width: SizeTheme.paddingMiddleSize,),
-                Text(
-                  labelText ?? "",
-                  style: TextStyleTheme.textMainStyleSmall,
-                ),
-              ],
+        Container(
+          decoration: BoxDecoration(
+            color: ColorTheme.backgroundSubColor,
+            borderRadius: BorderRadius.circular(SizeTheme.borderRadiusSize),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: SizeTheme.paddingMiddleSize,
+              horizontal: SizeTheme.paddingLargeSize,
             ),
-            TextFormField(
+            child: TextFormField(
               controller: controller,
               validator: validator,
               cursorColor: ColorTheme.backgroundSubColor,
@@ -66,9 +74,9 @@ class TitledTextFormField extends StatelessWidget {
                 border: InputBorder.none,
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
