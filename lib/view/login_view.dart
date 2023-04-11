@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
+import 'package:kumoh_school_bus/view/common/app_logo.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final LoginViewModel _loginViewModel = widget.viewModel;
+  late final LoginViewModel _viewModel = widget.viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +46,29 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const AppLogo(),
+              const SizedBox(height: SizeTheme.paddingMiddleSize,),
               TitledTextFormField(
-                labelText: "labelText",
-                hintText: "hintText",
+                labelText: "ID",
+                hintText: "ID",
                 prefixIcon: Icons.person,
                 keyboardType: TextInputType.text,
                 validator: null,
-                controller: _loginViewModel.idController,
+                controller: _viewModel.idController,
               ),
+              const SizedBox(height: SizeTheme.paddingMiddleSize,),
               TitledTextFormField(
-                labelText: "labelText",
-                hintText: "hintText",
+                labelText: "비밀번호",
+                hintText: "Password",
                 prefixIcon: Icons.person,
                 keyboardType: TextInputType.text,
                 validator: null,
-                controller: _loginViewModel.passwordController,
+                controller: _viewModel.passwordController,
               ),
+              const SizedBox(height: SizeTheme.paddingMiddleSize,),
+              CentralOutlinedButton(onPressed: _viewModel.login, text: "로그인"),
+              const SizedBox(height: SizeTheme.paddingMiddleSize,),
+              VanillaTextButton(onPressed: _viewModel.navigateToUserSignupPage, text: "회원이 아니신가요?"),
             ],
           ),
         ),

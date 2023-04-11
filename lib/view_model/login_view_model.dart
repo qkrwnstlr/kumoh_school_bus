@@ -8,4 +8,12 @@ class LoginViewModel extends ChangeNotifier {
     idController = TextEditingController(text: '');
     passwordController = TextEditingController(text: '');
   }
+
+  void login() {
+    print('login');
+  }
+
+  void navigateToUserSignupPage() {
+    print('signup');
+  }
 }
