@@ -1,5 +1,5 @@
 class SizeTheme {
-  static const double borderRadiusSize = 30.0;
+  static const double borderRadiusSize = 12.0;
 
   static const double paddingLargeSize = 16.0;
   static const double paddingMiddleSize = 8.0;
