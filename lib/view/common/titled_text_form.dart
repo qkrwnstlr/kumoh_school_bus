@@ -44,6 +44,7 @@ class TitledTextFormField extends StatelessWidget {
                   size: SizeTheme.iconMiddleSize,
                   color: ColorTheme.itemSubColor,
                 ),
+                const SizedBox(width: SizeTheme.paddingMiddleSize,),
                 Text(
                   labelText ?? "",
                   style: TextStyleTheme.textMainStyleSmall,
