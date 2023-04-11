@@ -19,6 +19,14 @@ class TextStyleTheme {
     height: SizeTheme.textHeight,
   );
 
+  static const TextStyle textDisableStyleMiddle = TextStyle(
+    color: ColorTheme.textDisableColor,
+    fontSize: SizeTheme.textMiddleSize,
+    fontWeight: FontWeight.bold,
+    overflow: TextOverflow.ellipsis,
+    height: SizeTheme.textHeight,
+  );
+
   static const TextStyle textMainStyleSmall = TextStyle(
     color: ColorTheme.textMainColor,
     fontSize: SizeTheme.textSmallSize,

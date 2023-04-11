@@ -60,7 +60,7 @@ class TitledTextFormField extends StatelessWidget {
               decoration: InputDecoration(
                 isDense: true,
                 hintText: hintText,
-                hintStyle: TextStyleTheme.textMainStyleMiddle,
+                hintStyle: TextStyleTheme.textDisableStyleMiddle,
                 fillColor: ColorTheme.backgroundSubColor,
                 border: InputBorder.none,
               ),

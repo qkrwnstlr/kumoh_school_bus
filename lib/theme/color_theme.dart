@@ -9,4 +9,5 @@ class ColorTheme {
   
   static const Color textMainColor = Color(0xff000000);
   static const Color textSubColor = Color(0xffffffff);
+  static const Color textDisableColor = Color(0x99000000);
 }
