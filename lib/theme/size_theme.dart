@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class SizeTheme {
   static const double borderRadiusSize = 12.0;
 
@@ -15,4 +17,8 @@ class SizeTheme {
   static const double textSmallSize = 14.0;
   static const double textMiniSize = 10.5;
   static const double textHeight = 1.4;
+
+  static const Size outlinedButtonSize = Size.fromHeight(textLargeSize * 3);
+  static const Size outlinedSmallButtonSize = Size(textMiddleSize, textMiddleSize);
+  static const Size textButtonSize = Size.fromHeight(textSmallSize);
 }
