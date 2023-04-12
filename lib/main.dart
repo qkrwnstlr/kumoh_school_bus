@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'view/views.dart';
 
 void main() async {
@@ -18,7 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: '/login',
       routes: {
-        '/login' : (context) => const LoginView()
+        '/login' : (context) => const LoginView(),
+        '/signup/user' : (context) => const UserSignupView(),
       },
     );
   }
