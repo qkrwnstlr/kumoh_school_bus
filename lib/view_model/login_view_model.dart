@@ -9,11 +9,11 @@ class LoginViewModel extends ChangeNotifier {
     passwordController = TextEditingController(text: '');
   }
 
-  void login() {
-    print('login');
+  void login(BuildContext context) {
+
   }
 
-  void navigateToUserSignupPage() {
-    print('signup');
+  void navigateToUserSignupPage(BuildContext context) {
+    Navigator.pushNamed(context, "/signup/user");
   }
 }
