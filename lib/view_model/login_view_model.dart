@@ -10,7 +10,7 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void login(BuildContext context) {
-
+    Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
   }
 
   void navigateToUserSignupPage(BuildContext context) {
