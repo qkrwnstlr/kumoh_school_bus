@@ -35,7 +35,7 @@ class _MainPageState extends State<_MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: UnderlinedDropdownMenu(
+      body: VanillaDropdownMenu(
         value: _viewModel.direction,
         items: Direction.values,
         onChanged: _viewModel.onDirectionChange,

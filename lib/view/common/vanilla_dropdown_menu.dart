@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/theme/text_style_theme.dart';
 
-class UnderlinedDropdownMenu<T> extends StatelessWidget {
+class VanillaDropdownMenu<T> extends StatelessWidget {
   final T value;
   final List<T> items;
   final void Function(dynamic) onChanged;
 
-  const UnderlinedDropdownMenu({
+  const VanillaDropdownMenu({
     Key? key,
     required this.value,
     required this.items,
@@ -23,6 +23,8 @@ class UnderlinedDropdownMenu<T> extends StatelessWidget {
               child: Text(e.toString(), style: TextStyleTheme.textMainStyleMiddle)))
           .toList(),
       onChanged: onChanged,
+      underline: Container(),
+      isExpanded: true,
     );
   }
 }
