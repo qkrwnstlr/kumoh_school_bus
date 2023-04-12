@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
-import 'package:kumoh_school_bus/view/common/app_logo.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +13,7 @@ class LoginView extends StatelessWidget {
     return ChangeNotifierProvider<LoginViewModel>(
       create: (_) => LoginViewModel(),
       child: Consumer<LoginViewModel>(
-        builder: (context, provider, child) => LoginPage(
+        builder: (context, provider, child) => _LoginPage(
           viewModel: provider,
         ),
       ),
@@ -22,16 +21,16 @@ class LoginView extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatefulWidget {
+class _LoginPage extends StatefulWidget {
   final LoginViewModel viewModel;
 
-  const LoginPage({Key? key, required this.viewModel}) : super(key: key);
+  const _LoginPage({Key? key, required this.viewModel}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<_LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<_LoginPage> {
   late final LoginViewModel _viewModel = widget.viewModel;
 
   @override
