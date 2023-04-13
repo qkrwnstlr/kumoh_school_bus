@@ -15,7 +15,10 @@ class ScrollableContainer extends StatelessWidget {
         color: color,
         child: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
-          child: child,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15, vertical: MediaQuery.of(context).size.width * 0.05),
+            child: child,
+          ),
         ),
       ),
     );
