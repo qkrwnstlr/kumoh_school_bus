@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/type/types.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
+import 'package:kumoh_school_bus/view/common/left_side_outlined_button.dart';
 import 'package:kumoh_school_bus/view_model/main_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -35,10 +37,24 @@ class _MainPageState extends State<_MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: VanillaDropdownMenu(
-        value: _viewModel.direction,
-        items: Direction.values,
-        onChanged: _viewModel.onDirectionChange,
+      body: Padding(
+        padding: const EdgeInsets.all(SizeTheme.paddingLargeSize),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            OutlinedDropdownMenu(
+              value: _viewModel.direction,
+              items: Direction.values,
+              onChanged: _viewModel.onDirectionChange,
+            ),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            CentralOutlinedButton(onPressed: null, text: "text"),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            LeftSideOutlinedButton(onPressed: null, text: "text")
+          ],
+        ),
       ),
     );
   }
