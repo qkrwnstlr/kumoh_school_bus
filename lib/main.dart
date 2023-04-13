@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             final jsCode = '''
               let script = document.createElement('script');
               script.src = `https://maps.googleapis.com/maps/api/js?key=${dotenv.env['GOOGLE_MAP_KEY']}&callback=console.log`;
-              document.body.appendChild(script);
+              document.head.appendChild(script);
             ''';
             final script = html.ScriptElement()
               ..type = 'text/javascript'
