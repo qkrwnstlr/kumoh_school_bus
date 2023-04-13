@@ -26,13 +26,8 @@ class VanillaDropdownMenu<T> extends StatelessWidget {
       onChanged: onChanged,
       underline: Container(),
       isExpanded: true,
-      style: const TextStyle(
-        color: ColorTheme.textMainColor,
-        fontSize: SizeTheme.textMiddleSize,
-        fontWeight: FontWeight.bold,
-        overflow: TextOverflow.ellipsis,
-        height: 1,
-      ),
+      style: TextStyleTheme.textMainStyleMiddle,
+      iconSize: SizeTheme.iconMiddleSize,
     );
   }
 }
