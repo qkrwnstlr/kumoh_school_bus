@@ -63,7 +63,17 @@ class _MainPageState extends State<_MainPage> {
                 text: dateDayFormat.format(_viewModel.reservationDate),
               ),
               const SizedBox(height: SizeTheme.paddingMiddleSize),
-              const SizedBox(height: 500, child: VanillaGoogleMap(setOfMarkers: <Marker>{})),
+              SizedBox(
+                height: 500,
+                child: VanillaGoogleMap(
+                  setOfMarkers: <Marker>{
+                    const Marker(
+                      markerId: MarkerId("markerId"),
+                      position: LatLng(35.8714354, 128.601445),
+                    )
+                  },
+                ),
+              ),
               const SizedBox(height: SizeTheme.paddingMiddleSize),
               CentralOutlinedButton(
                 onPressed: () => _viewModel.navigateToReservationPage(context),
