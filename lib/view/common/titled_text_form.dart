@@ -56,7 +56,7 @@ class TitledTextFormField extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: SizeTheme.paddingMiddleSize,
+              vertical: 0.0,
               horizontal: SizeTheme.paddingLargeSize,
             ),
             child: TextFormField(
