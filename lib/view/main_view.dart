@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/type/types.dart';
 import 'package:kumoh_school_bus/util/utils.dart';
@@ -66,12 +65,7 @@ class _MainPageState extends State<_MainPage> {
               SizedBox(
                 height: 500,
                 child: VanillaGoogleMap(
-                  setOfMarkers: <Marker>{
-                    const Marker(
-                      markerId: MarkerId("markerId"),
-                      position: LatLng(35.8714354, 128.601445),
-                    )
-                  },
+                  setOfMarkers: _viewModel.setOfMarkers,
                 ),
               ),
               const SizedBox(height: SizeTheme.paddingMiddleSize),
