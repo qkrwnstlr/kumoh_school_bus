@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'view/views.dart';
 
 void main() async {
@@ -20,7 +21,17 @@ class MyApp extends StatelessWidget {
         '/login' : (context) => const LoginView(),
         '/signup/user' : (context) => const UserSignupView(),
         '/' : (context) => const MainView(),
+        '/reservation' : (context) => const LoginView(),
       },
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ko', 'KR'),
+      ],
+      locale: const Locale('ko'),
     );
   }
 }
