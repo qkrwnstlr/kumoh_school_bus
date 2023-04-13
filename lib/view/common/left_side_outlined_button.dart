@@ -34,6 +34,7 @@ class LeftSideOutlinedButton extends StatelessWidget {
           const Icon(
             Icons.date_range,
             size: SizeTheme.iconMiddleSize,
+            color: ColorTheme.itemSubColor,
           )
         ],
       ),
