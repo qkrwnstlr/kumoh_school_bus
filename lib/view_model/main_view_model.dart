@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../type/types.dart';
 
@@ -11,8 +11,12 @@ class MainViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onReservationDateChanged(DateTime value) {
-    reservationDate = value;
+  void onReservationDateChanged(DateTime? value) {
+    reservationDate = value ?? reservationDate;
     notifyListeners();
+  }
+
+  void navigateToReservationPage(BuildContext context) {
+    Navigator.pushNamed(context, "/reservation");
   }
 }
