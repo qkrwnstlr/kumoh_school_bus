@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kumoh_school_bus/theme/text_style_theme.dart';
+
+import '../../theme/themes.dart';
 
 class VanillaDropdownMenu<T> extends StatelessWidget {
   final T value;
@@ -25,6 +26,13 @@ class VanillaDropdownMenu<T> extends StatelessWidget {
       onChanged: onChanged,
       underline: Container(),
       isExpanded: true,
+      style: const TextStyle(
+        color: ColorTheme.textMainColor,
+        fontSize: SizeTheme.textMiddleSize,
+        fontWeight: FontWeight.bold,
+        overflow: TextOverflow.ellipsis,
+        height: 1,
+      ),
     );
   }
 }
