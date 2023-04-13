@@ -36,44 +36,48 @@ class _MainPageState extends State<_MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    _viewModel.initMarkers();
     return Scaffold(
+      appBar: VanillaAppBar.build(context, title: "Kumoh School Bus"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: Padding(
           padding: const EdgeInsets.all(SizeTheme.paddingLargeSize),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              OutlinedDropdownMenu(
-                value: _viewModel.direction,
-                items: Direction.values,
-                onChanged: _viewModel.onDirectionChange,
-              ),
-              const SizedBox(height: SizeTheme.paddingMiddleSize),
-              LeftSideOutlinedButton(
-                onPressed: () => showDatePicker(
-                  context: context,
-                  initialDate: _viewModel.reservationDate,
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime.now().add(const Duration(days: 7)),
-                ).then((value) => _viewModel.onReservationDateChanged(value)),
-                text: dateDayFormat.format(_viewModel.reservationDate),
-              ),
-              const SizedBox(height: SizeTheme.paddingMiddleSize),
-              SizedBox(
-                height: 500,
-                child: VanillaGoogleMap(
-                  setOfMarkers: _viewModel.setOfMarkers,
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) => Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OutlinedDropdownMenu(
+                  value: _viewModel.direction,
+                  items: Direction.values,
+                  onChanged: _viewModel.onDirectionChange,
                 ),
-              ),
-              const SizedBox(height: SizeTheme.paddingMiddleSize),
-              CentralOutlinedButton(
-                onPressed: () => _viewModel.navigateToReservationPage(context),
-                text: "조회 하기",
-              ),
-            ],
+                const SizedBox(height: SizeTheme.paddingMiddleSize),
+                LeftSideOutlinedButton(
+                  onPressed: () => showDatePicker(
+                    context: context,
+                    initialDate: _viewModel.reservationDate,
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(const Duration(days: 7)),
+                  ).then((value) => _viewModel.onReservationDateChanged(value)),
+                  text: dateDayFormat.format(_viewModel.reservationDate),
+                ),
+                const SizedBox(height: SizeTheme.paddingMiddleSize),
+                SizedBox(
+                  height: constraints.maxWidth,
+                  child: VanillaGoogleMap(
+                    setOfMarkers: _viewModel.setOfMarkers,
+                  ),
+                ),
+                const SizedBox(height: SizeTheme.paddingMiddleSize),
+                CentralOutlinedButton(
+                  onPressed: () => _viewModel.navigateToReservationPage(context),
+                  text: "조회 하기",
+                ),
+              ],
+            ),
           ),
         ),
       ),
