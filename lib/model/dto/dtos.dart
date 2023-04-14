@@ -5,3 +5,5 @@ export 'bus_dto.dart';
 export 'bus_time_dto.dart';
 export 'bus_time_seat_dto.dart';
 export 'station_dto.dart';
+
+export 'reservation_dto.dart';

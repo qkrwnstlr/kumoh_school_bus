@@ -19,6 +19,7 @@ class SizeTheme {
   static const double textHeight = 1.4;
 
   static const Size outlinedButtonSize = Size.fromHeight(textLargeSize * 2);
+  static const Size outlinedWrapButtonSize = Size(textLargeSize * 2, textLargeSize * 2);
   static const Size outlinedSmallButtonSize = Size(textMiddleSize, textMiddleSize);
   static const Size textButtonSize = Size.fromHeight(textSmallSize);
 }

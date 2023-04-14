@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
                 '/signup/user': (context) => const UserSignupView(),
                 '/': (context) => const MainView(),
                 '/reservation': (context) => const ReservationView(),
-                '/reservation/check': (context) => const MainView(),
+                '/reservation/check': (context) => const CheckReservationView(),
               },
               localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,

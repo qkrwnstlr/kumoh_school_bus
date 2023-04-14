@@ -15,11 +15,11 @@ class AppLogo extends StatelessWidget {
           Icon(
             Icons.directions_bus,
             color: ColorTheme.itemSubColor,
-            size: 200.0,
+            size: 100.0,
           ),
           Text(
-            "WHEERE",
-            style: TextStyleTheme.textMainStyleLarge,
+            "금오버스",
+            style: TextStyleTheme.textMainStyleMiddle,
           ),
         ],
       ),
