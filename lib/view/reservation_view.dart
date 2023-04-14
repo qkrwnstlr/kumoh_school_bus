@@ -11,8 +11,14 @@ class ReservationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
     return ChangeNotifierProvider<ReservationViewModel>(
-      create: (_) => ReservationViewModel(),
+      create: (_) => ReservationViewModel(
+        searchResponseDTO: arguments["searchResponseDTO"],
+        station: arguments['station'],
+        reservationDate: arguments['reservationDate'],
+      ),
       child: Consumer<ReservationViewModel>(
         builder: (context, provider, child) => _ReservationPage(
           viewModel: provider,
@@ -60,8 +66,8 @@ class _ReservationPageState extends State<_ReservationPage> {
                         style: TextStyleTheme.textMainStyleMiddle),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
                     VanillaDropdownMenu(
-                      value: _viewModel.startTime,
-                      items: _viewModel.startTimeList,
+                      value: _viewModel.currentTime,
+                      items: _viewModel.busTimeList,
                       onChanged: _viewModel.onStartTimeChanged,
                       isExpanded: false,
                     ),
@@ -69,27 +75,31 @@ class _ReservationPageState extends State<_ReservationPage> {
                     const Text("도착 시간:",
                         style: TextStyleTheme.textMainStyleMiddle),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
-                    Text(_viewModel.endTime,
+                    Text(_viewModel.currentTime.endTime,
                         style: TextStyleTheme.textMainStyleMiddle),
                     Flexible(
                       flex: 1,
                       child: Container(),
                     ),
                     VanillaDropdownMenu(
-                      value: _viewModel.busNum,
-                      items: _viewModel.busNumList,
+                      value: _viewModel.bus,
+                      items: _viewModel.busList,
                       onChanged: _viewModel.onBusNumChanged,
                       isExpanded: false,
                     ),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
                     Column(
                       children: [
-                        Text(_viewModel.endStation,
-                            style: TextStyleTheme.textMainStyleMiddle,
-                            textAlign: TextAlign.left),
-                        Text(dateDayFormat.format(_viewModel.reservationDate),
-                            style: TextStyleTheme.textMainStyleMiddle,
-                            textAlign: TextAlign.left),
+                        Text(
+                          _viewModel.station,
+                          style: TextStyleTheme.textMainStyleMiddle,
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          dateDayFormat.format(_viewModel.reservationDate),
+                          style: TextStyleTheme.textMainStyleMiddle,
+                          textAlign: TextAlign.left,
+                        ),
                       ],
                     )
                   ],

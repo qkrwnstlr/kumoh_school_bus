@@ -1,35 +1,66 @@
 import 'package:flutter/cupertino.dart';
+import 'package:kumoh_school_bus/model/dto/dtos.dart';
 
 class ReservationViewModel extends ChangeNotifier {
-  late String startTime;
-  final List<String> startTimeList = ["value"];
-  late String endTime = "value";
-  final String endStation = "value";
-  late String busNum;
-  final List<String> busNumList = ["value"];
-  final DateTime reservationDate = DateTime.now();
-  late String seat;
-  final List<String> seatList = ["value"];
+  final SearchResponseDTO searchResponseDTO;
+  final String station;
+  final DateTime reservationDate;
 
-  ReservationViewModel() {
-    startTime = startTimeList[0];
-    busNum = busNumList[0];
-    seat = seatList[0];
+  late List<BusDTO> busList;
+  late int busIndex;
+  late BusDTO bus;
+
+  late List<BusTimeSeatDTO> busTimeSeatList;
+
+  late List<BusTimeDTO> busTimeList;
+  late int busTimeIndex;
+  late BusTimeDTO currentTime;
+
+  late List<int> seatList;
+  late int seatIndex;
+  late int seat;
+
+  ReservationViewModel({
+    required this.searchResponseDTO,
+    required this.station,
+    required this.reservationDate,
+  }) {
+    busList = searchResponseDTO.busList;
+    _setBusIndex(0);
+  }
+
+  void _setSeatIndex(int index) {
+    seatIndex = index;
+    seat = seatList[index];
+  }
+
+  void _setBusTimeIndex(int index) {
+    busTimeIndex = index;
+    currentTime = busTimeList[busTimeIndex];
+    seatList = busTimeSeatList[busTimeIndex].timeSeatList.map((e) => e.seatNum).toList();
+    _setSeatIndex(0);
+  }
+
+  void _setBusIndex(int index) {
+    busIndex = index;
+    busTimeSeatList = busList[busIndex].busTimeSeatList;
+    busTimeList = busTimeSeatList.map((e) => e.busTimeDTO).toList();
+    bus = busList[busIndex];
+    _setBusTimeIndex(0);
   }
 
   void onStartTimeChanged(dynamic value) {
-    startTime = value;
-    endTime = value;
+    _setBusTimeIndex(busTimeList.indexOf(value));
     notifyListeners();
   }
 
   void onBusNumChanged(dynamic value) {
-    busNum = value;
+    _setBusIndex(busList.indexOf(value));
     notifyListeners();
   }
 
   void onSeatChanged(dynamic value) {
-    seat = value;
+    _setSeatIndex(seatList.indexOf(value));
     notifyListeners();
   }
 
