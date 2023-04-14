@@ -1,4 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kumoh_school_bus/dto/dto.dart';
+import 'package:kumoh_school_bus/dto/station_dto.dart';
 import 'package:kumoh_school_bus/entity/entity.dart';
 
 class Station implements Entity {
@@ -15,18 +17,20 @@ class Station implements Entity {
   });
 
   @override
-  Station.fromJson(Map<String, dynamic> json)
-      : sId = json['s_id'],
-        sName = json['sName'],
-        sLat = json['s_lat'],
-        sLng = json['s_lng'];
+  Station.fromJson(Map<String, DTO> dtos)
+      : sId = (dtos['stationDTO'] as StationDTO).sId,
+        sName = (dtos['stationDTO'] as StationDTO).sName,
+        sLat = (dtos['stationDTO'] as StationDTO).sLat,
+        sLng = (dtos['stationDTO'] as StationDTO).sLng;
 
   @override
-  Map<String, dynamic> toJson() => {
-        's_id': sId,
-        's_name': sName,
-        's_lat': sLat,
-        's_lng': sLng,
+  Map<String, DTO> toDTO() => {
+        'stationDTO': StationDTO(
+          sId: sId,
+          sName: sName,
+          sLat: sLat,
+          sLng: sLng,
+        ),
       };
 
   Marker toMarker() => Marker(

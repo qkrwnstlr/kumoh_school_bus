@@ -1,4 +1,6 @@
+import 'package:kumoh_school_bus/dto/dto.dart';
+
 abstract class Entity {
-  Entity.fromJson(Map<String,dynamic> json);
-  Map<String, dynamic> toJson();
+  Entity.fromDTO(Map<String, DTO> dtos);
+  Map<String, DTO> toDTO();
 }
