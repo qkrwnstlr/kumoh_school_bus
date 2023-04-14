@@ -1,19 +1,19 @@
 import 'package:kumoh_school_bus/model/dto/response_dto.dart';
 
 class BusTimeDTO implements ResponseDTO {
-  String busNum;
-  List<String> startTimeList;
-  List<String> endTimeList;
+  String startTime;
+  String endTime;
 
   BusTimeDTO({
-    required this.busNum,
-    required this.startTimeList,
-    required this.endTimeList,
+    required this.startTime,
+    required this.endTime,
   });
 
   @override
   BusTimeDTO.fromJson(Map<String, dynamic> json)
-      : busNum = json['busNum'],
-        startTimeList = json['startTimeList'],
-        endTimeList = json['endTimeList'];
+      : startTime = json['startTimeList'],
+        endTime = json['endTimeList'];
+
+  @override
+  String toString() => startTime;
 }
