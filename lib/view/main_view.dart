@@ -53,6 +53,7 @@ class _MainPageState extends State<_MainPage> {
                   value: _viewModel.direction,
                   items: Direction.values,
                   onChanged: _viewModel.onDirectionChange,
+                  isExpanded: true,
                 ),
                 const SizedBox(height: SizeTheme.paddingMiddleSize),
                 LeftSideOutlinedButton(
@@ -66,7 +67,7 @@ class _MainPageState extends State<_MainPage> {
                 ),
                 const SizedBox(height: SizeTheme.paddingMiddleSize),
                 SizedBox(
-                  height: constraints.maxWidth,
+                  height: constraints.maxWidth * 0.5,
                   child: VanillaGoogleMap(
                     setOfMarkers: _viewModel.setOfMarkers,
                   ),
