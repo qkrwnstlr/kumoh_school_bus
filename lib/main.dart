@@ -51,8 +51,8 @@ class MyApp extends StatelessWidget {
           }
           return const Center(
             child: SizedBox(
-              width: 300,
-              height: 300,
+              width: 50,
+              height: 50,
               child: CircularProgressIndicator(
                 color: ColorTheme.itemSubColor,
               ),
