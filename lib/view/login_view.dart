@@ -38,38 +38,39 @@ class _LoginPageState extends State<_LoginPage> {
     return Scaffold(
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
-        child: Padding(
-          padding: const EdgeInsets.all(SizeTheme.paddingLargeSize),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const AppLogo(),
-              const SizedBox(height: SizeTheme.paddingMiddleSize,),
-              TitledTextFormField(
-                labelText: "ID",
-                hintText: "ID",
-                prefixIcon: Icons.person,
-                keyboardType: TextInputType.text,
-                validator: null,
-                controller: _viewModel.idController,
-              ),
-              const SizedBox(height: SizeTheme.paddingMiddleSize,),
-              TitledTextFormField(
-                labelText: "비밀번호",
-                hintText: "Password",
-                prefixIcon: Icons.lock,
-                keyboardType: TextInputType.visiblePassword,
-                validator: null,
-                controller: _viewModel.passwordController,
-              ),
-              const SizedBox(height: SizeTheme.paddingMiddleSize,),
-              CentralOutlinedButton(onPressed: () => _viewModel.login(context), text: "로그인"),
-              const SizedBox(height: SizeTheme.paddingMiddleSize,),
-              VanillaTextButton(onPressed: () => _viewModel.navigateToUserSignupPage(context), text: "회원이 아니신가요?"),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const AppLogo(),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            TitledTextFormField(
+              labelText: "ID",
+              hintText: "ID",
+              prefixIcon: Icons.person,
+              keyboardType: TextInputType.text,
+              validator: null,
+              controller: _viewModel.idController,
+            ),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            TitledTextFormField(
+              labelText: "비밀번호",
+              hintText: "Password",
+              prefixIcon: Icons.lock,
+              keyboardType: TextInputType.visiblePassword,
+              validator: null,
+              controller: _viewModel.passwordController,
+            ),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            CentralOutlinedButton(
+                onPressed: () => _viewModel.login(context), text: "로그인"),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            VanillaTextButton(
+              onPressed: () => _viewModel.navigateToUserSignupPage(context),
+              text: "회원이 아니신가요?",
+            ),
+          ],
         ),
       ),
     );
