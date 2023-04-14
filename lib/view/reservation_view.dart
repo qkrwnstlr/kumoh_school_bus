@@ -62,7 +62,7 @@ class _ReservationPageState extends State<_ReservationPage> {
                     VanillaDropdownMenu(
                       value: _viewModel.startTime,
                       items: _viewModel.startTimeList,
-                      onChanged: (value) => {},
+                      onChanged: _viewModel.onStartTimeChanged,
                       isExpanded: false,
                     ),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
@@ -77,7 +77,7 @@ class _ReservationPageState extends State<_ReservationPage> {
                     VanillaDropdownMenu(
                       value: _viewModel.busNum,
                       items: _viewModel.busNumList,
-                      onChanged: (value) => {},
+                      onChanged: _viewModel.onBusNumChanged,
                       isExpanded: false,
                     ),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
@@ -111,7 +111,7 @@ class _ReservationPageState extends State<_ReservationPage> {
                 child: VanillaDropdownMenu(
                   value: _viewModel.seat,
                   items: _viewModel.seatList,
-                  onChanged: (value) => {},
+                  onChanged: _viewModel.onSeatChanged,
                   isExpanded: true,
                 ),
               ),
