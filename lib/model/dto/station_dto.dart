@@ -1,4 +1,4 @@
-import 'package:kumoh_school_bus/dto/response_dto.dart';
+import 'package:kumoh_school_bus/model/dto/response_dto.dart';
 
 class StationDTO implements ResponseDTO {
   int sId;

@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kumoh_school_bus/dto/dto.dart';
-import 'package:kumoh_school_bus/dto/station_dto.dart';
 import 'package:kumoh_school_bus/entity/entity.dart';
+import 'package:kumoh_school_bus/model/dto/dto.dart';
+import 'package:kumoh_school_bus/model/dto/dtos.dart';
 
 class Station implements Entity {
   int sId;

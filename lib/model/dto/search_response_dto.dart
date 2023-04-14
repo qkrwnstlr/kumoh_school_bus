@@ -1,5 +1,4 @@
-import 'package:kumoh_school_bus/dto/response_dto.dart';
-
+import 'package:kumoh_school_bus/model/dto/response_dto.dart';
 import 'bus_time_seat_dto.dart';
 
 class SearchResponseDTO implements ResponseDTO {

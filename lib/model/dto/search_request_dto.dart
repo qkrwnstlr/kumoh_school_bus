@@ -1,4 +1,4 @@
-import 'package:kumoh_school_bus/dto/request_dto.dart';
+import 'package:kumoh_school_bus/model/dto/request_dto.dart';
 
 class SearchRequestDTO implements RequestDTO {
   String date;
