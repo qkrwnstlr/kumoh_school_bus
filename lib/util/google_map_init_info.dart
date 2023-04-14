@@ -8,5 +8,5 @@ double boundNELng = 129.00;
 
 double initZoom = 12.0;
 
-double minZoom = 10.0;
-double maxZoom = 15.0;
+double minZoom = 11.0;
+double maxZoom = 16.0;
