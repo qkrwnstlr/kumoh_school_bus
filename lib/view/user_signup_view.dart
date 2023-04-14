@@ -43,7 +43,7 @@ class _UserSignupPageState extends State<_UserSignupPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppLogo(),
+            const Hero(tag: "AppLogo", child: AppLogo()),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             TitledTextFormField(
               labelText: "ID",
@@ -72,8 +72,11 @@ class _UserSignupPageState extends State<_UserSignupPage> {
               controller: _viewModel.checkPasswordController,
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
-            CentralOutlinedButton(
-                onPressed: () => _viewModel.signup(context), text: "회원가입"),
+            Hero(
+              tag: "Button",
+              child: CentralOutlinedButton(
+                  onPressed: () => _viewModel.signup(context), text: "회원가입"),
+            ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             VanillaTextButton(
                 onPressed: () => _viewModel.navigatePop(context),

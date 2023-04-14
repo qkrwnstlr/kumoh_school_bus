@@ -43,7 +43,7 @@ class _LoginPageState extends State<_LoginPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppLogo(),
+            const Hero(tag: "AppLogo", child: AppLogo()),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             TitledTextFormField(
               labelText: "ID",
@@ -63,8 +63,11 @@ class _LoginPageState extends State<_LoginPage> {
               controller: _viewModel.passwordController,
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
-            CentralOutlinedButton(
-                onPressed: () => _viewModel.login(context), text: "로그인"),
+            Hero(
+              tag: "Button",
+              child: CentralOutlinedButton(
+                  onPressed: () => _viewModel.login(context), text: "로그인"),
+            ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             VanillaTextButton(
               onPressed: () => _viewModel.navigateToUserSignupPage(context),
