@@ -6,12 +6,14 @@ class VanillaDropdownMenu<T> extends StatelessWidget {
   final T value;
   final List<T> items;
   final void Function(dynamic) onChanged;
+  final bool isExpanded;
 
   const VanillaDropdownMenu({
     Key? key,
     required this.value,
     required this.items,
     required this.onChanged,
+    required this.isExpanded,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class VanillaDropdownMenu<T> extends StatelessWidget {
           .toList(),
       onChanged: onChanged,
       underline: Container(),
-      isExpanded: true,
+      isExpanded: isExpanded,
       style: TextStyleTheme.textMainStyleMiddle,
       iconSize: SizeTheme.iconMiddleSize,
     );
