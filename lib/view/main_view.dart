@@ -71,9 +71,12 @@ class _MainPageState extends State<_MainPage> {
                 ),
               ),
               const SizedBox(height: SizeTheme.paddingMiddleSize),
-              CentralOutlinedButton(
-                onPressed: () => _viewModel.navigateToReservationPage(context),
-                text: "조회 하기",
+              Hero(
+                tag: "Button",
+                child: CentralOutlinedButton(
+                  onPressed: () => _viewModel.navigateToReservationPage(context),
+                  text: "조회 하기",
+                ),
               ),
             ],
           ),

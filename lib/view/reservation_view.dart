@@ -69,7 +69,8 @@ class _ReservationPageState extends State<_ReservationPage> {
                     const Text("도착 시간:",
                         style: TextStyleTheme.textMainStyleMiddle),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
-                    Text(_viewModel.endTime, style: TextStyleTheme.textMainStyleMiddle),
+                    Text(_viewModel.endTime,
+                        style: TextStyleTheme.textMainStyleMiddle),
                     Flexible(
                       flex: 1,
                       child: Container(),
@@ -117,7 +118,13 @@ class _ReservationPageState extends State<_ReservationPage> {
               ),
             ),
             const SizedBox(height: SizeTheme.paddingLargeSize),
-            CentralOutlinedButton(onPressed: () => _viewModel.onReservationButtonClicked(context), text: "예약 하기"),
+            Hero(
+              tag: "Button",
+              child: CentralOutlinedButton(
+                onPressed: () => _viewModel.onReservationButtonClicked(context),
+                text: "예약 하기",
+              ),
+            ),
           ],
         ),
       ),
