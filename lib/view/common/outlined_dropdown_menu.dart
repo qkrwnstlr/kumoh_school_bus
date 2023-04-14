@@ -7,12 +7,14 @@ class OutlinedDropdownMenu<T> extends StatelessWidget {
   final T value;
   final List<T> items;
   final void Function(dynamic) onChanged;
+  final bool isExpanded;
 
   const OutlinedDropdownMenu({
     Key? key,
     required this.value,
     required this.items,
     required this.onChanged,
+    required this.isExpanded,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class OutlinedDropdownMenu<T> extends StatelessWidget {
           value: value,
           items: items,
           onChanged: onChanged,
+          isExpanded: isExpanded,
         ),
       ),
     );
