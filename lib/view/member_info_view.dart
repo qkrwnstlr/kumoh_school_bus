@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/member_info_dto.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
+import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 import 'package:kumoh_school_bus/view_model/member_info_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -35,8 +36,8 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: VanillaAppBar.build(context, title: "Kumoh School Bus"),
+    return DrawerAppBarScaffold(
+      appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: MemberInfoItem(userInfoDTO: _viewModel.memberInfoDTO!),

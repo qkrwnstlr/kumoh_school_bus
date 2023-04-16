@@ -3,9 +3,6 @@ import 'package:kumoh_school_bus/model/dto/dtos.dart';
 class MemberRepository {
   MemberRepository._privateConstructor();
 
-  MemberInfoDTO? _memberInfoDTO;
-  MemberInfoDTO? get memberInfoDTO => _memberInfoDTO;
-
   static final MemberRepository _instance =
       MemberRepository._privateConstructor();
 
@@ -13,19 +10,15 @@ class MemberRepository {
     return _instance;
   }
 
-  Future login() async {
-    _memberInfoDTO = MemberInfoDTO(
+  Future<MemberInfoDTO> login() async {
+    return MemberInfoDTO(
       name: "name",
       studentID: "studentID",
       major: "major",
     );
   }
 
-  Future logout() async {
-    _memberInfoDTO = null;
-  }
-
-  Future editInfo(MemberInfoDTO memberInfoDTO) async {
-    _memberInfoDTO = memberInfoDTO;
+  Future<MemberInfoDTO> editInfo(MemberInfoDTO memberInfoDTO) async {
+    return memberInfoDTO;
   }
 }

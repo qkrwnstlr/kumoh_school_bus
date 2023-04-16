@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kumoh_school_bus/model/service/member_service.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
+import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 import 'view/views.dart';
 import 'dart:html' as html;
 
@@ -15,6 +17,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    DrawerAppBarScaffoldController().changeDrawerItems({
+      "Home": (context) => Navigator.popAndPushNamed(context, '/'),
+      "UserInfo": (context) => Navigator.popAndPushNamed(context, '/user/info'),
+      "Reservation": (context) => Navigator.popAndPushNamed(context, '/reservation/check'),
+      "Logout": (_) => MemberService().logout(),
+    });
     return FutureBuilder(
         future: dotenv.load(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
             html.querySelector('#dotenv')?.append(script);
             return MaterialApp(
               title: 'Flutter Demo',
-              initialRoute: '/user/info',
+              initialRoute: '/login',
               routes: {
                 '/login': (context) => const LoginView(),
                 '/user/signup': (context) => const MemberSignupView(),

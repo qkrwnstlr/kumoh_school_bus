@@ -3,6 +3,7 @@ import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/type/types.dart';
 import 'package:kumoh_school_bus/util/utils.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
+import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 import 'package:kumoh_school_bus/view_model/main_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -37,8 +38,8 @@ class _MainPageState extends State<_MainPage> {
   @override
   Widget build(BuildContext context) {
     _viewModel.initMarkers();
-    return Scaffold(
-      appBar: VanillaAppBar.build(context, title: "Kumoh School Bus"),
+    return DrawerAppBarScaffold(
+      appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: LayoutBuilder(
@@ -74,7 +75,8 @@ class _MainPageState extends State<_MainPage> {
               Hero(
                 tag: "Button",
                 child: CentralOutlinedButton(
-                  onPressed: () => _viewModel.navigateToReservationPage(context),
+                  onPressed: () =>
+                      _viewModel.navigateToReservationPage(context),
                   text: "조회 하기",
                 ),
               ),

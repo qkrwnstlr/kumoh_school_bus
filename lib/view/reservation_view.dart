@@ -5,6 +5,7 @@ import 'package:kumoh_school_bus/view_model/reservation_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/themes.dart';
+import 'common/drawer_app_bar_scaffold.dart';
 
 class ReservationView extends StatelessWidget {
   const ReservationView({Key? key}) : super(key: key);
@@ -42,8 +43,8 @@ class _ReservationPageState extends State<_ReservationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: VanillaAppBar.build(context, title: "Kumoh School Bus"),
+    return DrawerAppBarScaffold(
+      appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: Column(

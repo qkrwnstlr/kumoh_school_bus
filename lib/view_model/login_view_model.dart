@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kumoh_school_bus/model/repository/repositories.dart';
+
+import '../model/service/services.dart';
 
 class LoginViewModel extends ChangeNotifier {
   late final TextEditingController idController;
   late final TextEditingController passwordController;
 
-  final MemberRepository _memberRepository = MemberRepository();
+  final MemberService _memberService = MemberService();
 
   LoginViewModel() {
     idController = TextEditingController(text: '');
@@ -13,7 +14,7 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void login(BuildContext context, bool mounted) async {
-    await _memberRepository.login();
+    await _memberService.login();
     if (mounted) {
       Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
     }
