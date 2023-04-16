@@ -30,13 +30,14 @@ class MyApp extends StatelessWidget {
             html.querySelector('#dotenv')?.append(script);
             return MaterialApp(
               title: 'Flutter Demo',
-              initialRoute: '/login',
+              initialRoute: '/user/info',
               routes: {
                 '/login': (context) => const LoginView(),
-                '/signup/user': (context) => const UserSignupView(),
+                '/user/signup': (context) => const UserSignupView(),
                 '/': (context) => const MainView(),
                 '/reservation': (context) => const ReservationView(),
                 '/reservation/check': (context) => const CheckReservationView(),
+                '/user/info': (context) => const UserInfoView(),
               },
               localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,
