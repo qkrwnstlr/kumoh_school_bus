@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kumoh_school_bus/model/dto/user_info_dto.dart';
+import 'package:kumoh_school_bus/model/dto/member_info_dto.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
 import 'package:kumoh_school_bus/view_model/member_info_view_model.dart';
@@ -15,7 +15,7 @@ class MemberInfoView extends StatelessWidget {
     return ChangeNotifierProvider<MemberInfoViewModel>(
       create: (_) => MemberInfoViewModel(
         userInfoDTO: arguments['userInfoDTO'] ??
-            UserInfoDTO(name: "name", studentID: "studentID", major: "major"),
+            MemberInfoDTO(name: "name", studentID: "studentID", major: "major"),
       ),
       child: Consumer<MemberInfoViewModel>(
         builder: (context, provider, child) => _MemberInfoPage(
@@ -51,7 +51,7 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
 }
 
 class MemberInfoItem extends StatelessWidget {
-  final UserInfoDTO userInfoDTO;
+  final MemberInfoDTO userInfoDTO;
 
   const MemberInfoItem({
     Key? key,

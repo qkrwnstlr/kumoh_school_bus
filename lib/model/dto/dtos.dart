@@ -7,3 +7,4 @@ export 'bus_time_seat_dto.dart';
 export 'station_dto.dart';
 
 export 'reservation_dto.dart';
+export 'member_info_dto.dart';
