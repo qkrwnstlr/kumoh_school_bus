@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/model/repository/repositories.dart';
 
 class ReservationViewModel extends ChangeNotifier {
+  final MemberRepository _memberRepository = MemberRepository();
+
   final SearchResponseDTO searchResponseDTO;
   final String station;
   final DateTime reservationDate;

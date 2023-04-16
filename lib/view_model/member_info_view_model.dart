@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kumoh_school_bus/model/dto/member_info_dto.dart';
+import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/model/repository/repositories.dart';
 
 class MemberInfoViewModel extends ChangeNotifier {
-  final MemberInfoDTO userInfoDTO;
-  MemberInfoViewModel({
-    required this.userInfoDTO,
-  });
+  final MemberRepository _memberRepository = MemberRepository();
+
+  MemberInfoDTO? get memberInfoDTO =>
+      _memberRepository.memberInfoDTO ??
+      MemberInfoDTO(name: "name", studentID: "studentID", major: "major");
 }

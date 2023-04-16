@@ -66,7 +66,9 @@ class _LoginPageState extends State<_LoginPage> {
             Hero(
               tag: "Button",
               child: CentralOutlinedButton(
-                  onPressed: () => _viewModel.login(context), text: "로그인"),
+                onPressed: () => _viewModel.login(context, mounted),
+                text: "로그인",
+              ),
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             VanillaTextButton(

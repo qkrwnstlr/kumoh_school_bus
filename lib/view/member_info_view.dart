@@ -10,13 +10,8 @@ class MemberInfoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
     return ChangeNotifierProvider<MemberInfoViewModel>(
-      create: (_) => MemberInfoViewModel(
-        userInfoDTO: arguments['userInfoDTO'] ??
-            MemberInfoDTO(name: "name", studentID: "studentID", major: "major"),
-      ),
+      create: (_) => MemberInfoViewModel(),
       child: Consumer<MemberInfoViewModel>(
         builder: (context, provider, child) => _MemberInfoPage(
           viewModel: provider,
@@ -44,7 +39,7 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
       appBar: VanillaAppBar.build(context, title: "Kumoh School Bus"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
-        child: MemberInfoItem(userInfoDTO: _viewModel.userInfoDTO),
+        child: MemberInfoItem(userInfoDTO: _viewModel.memberInfoDTO!),
       ),
     );
   }
