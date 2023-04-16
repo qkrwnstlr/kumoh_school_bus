@@ -7,7 +7,7 @@ class ReservationViewModel extends ChangeNotifier {
   final MemberService _memberService = MemberService();
 
   final SearchResponseDTO searchResponseDTO;
-  final String station;
+  final StationDTO station;
   final DateTime reservationDate;
 
   late List<BusDTO> busList;

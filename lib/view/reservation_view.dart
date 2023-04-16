@@ -92,7 +92,7 @@ class _ReservationPageState extends State<_ReservationPage> {
                     Column(
                       children: [
                         Text(
-                          _viewModel.station,
+                          _viewModel.station.sName,
                           style: TextStyleTheme.textMainStyleMiddle,
                           textAlign: TextAlign.left,
                         ),

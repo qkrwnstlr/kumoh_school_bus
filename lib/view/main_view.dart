@@ -63,6 +63,16 @@ class _MainPageState extends State<_MainPage> {
                   lastDate: DateTime.now().add(const Duration(days: 7)),
                 ).then((value) => _viewModel.onReservationDateChanged(value)),
                 text: dateDayFormat.format(_viewModel.reservationDate),
+                iconData: Icons.date_range,
+              ),
+              const SizedBox(height: SizeTheme.paddingMiddleSize),
+              LeftSideOutlinedButton(
+                onPressed: null,
+                text: _viewModel.station?.sName ??
+                    "${_viewModel.direction == Direction.toGumi ? "승차지" : "하차지"}를 선택해주세요",
+                iconData: _viewModel.direction == Direction.toGumi
+                    ? Icons.location_on
+                    : Icons.location_on_outlined,
               ),
               const SizedBox(height: SizeTheme.paddingMiddleSize),
               SizedBox(
@@ -75,8 +85,9 @@ class _MainPageState extends State<_MainPage> {
               Hero(
                 tag: "Button",
                 child: CentralOutlinedButton(
-                  onPressed: () =>
-                      _viewModel.navigateToReservationPage(context),
+                  onPressed: _viewModel.station == null
+                      ? null
+                      : () => _viewModel.navigateToReservationPage(context),
                   text: "조회 하기",
                 ),
               ),

@@ -8,15 +8,19 @@ import '../type/types.dart';
 class MainViewModel extends ChangeNotifier {
   Direction direction = Direction.toDaegu;
   DateTime reservationDate = DateTime.now();
-  String station = "sName1";
+  StationDTO? station;
   List<StationDTO> stations = [
     StationDTO(sId: 1, sName: "sName1", sLat: 35.8714354, sLng: 128.601445),
     StationDTO(sId: 2, sName: "sName2", sLat: 35.8714, sLng: 128.601),
   ];
   late Set<Marker> setOfMarkers;
 
-  void initMarkers() =>
-      setOfMarkers = stations.map((e) => e.toMarker()).toSet();
+  void initMarkers() => setOfMarkers = stations
+      .map((e) => e.toMarker(() {
+            station = e;
+            notifyListeners();
+          }))
+      .toSet();
 
   void onDirectionChange(dynamic value) {
     direction = value;
@@ -33,7 +37,7 @@ class MainViewModel extends ChangeNotifier {
       context,
       "/reservation",
       arguments: {
-        'searchResponseDTO' : SearchResponseDTO(
+        'searchResponseDTO': SearchResponseDTO(
           busList: [
             BusDTO(
               busNum: "하교-1호",
@@ -91,8 +95,8 @@ class MainViewModel extends ChangeNotifier {
             ),
           ],
         ),
-        'station' : station,
-        'reservationDate' : reservationDate,
+        'station': station,
+        'reservationDate': reservationDate,
       },
     );
   }

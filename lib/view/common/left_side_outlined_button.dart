@@ -5,10 +5,14 @@ class LeftSideOutlinedButton extends StatelessWidget {
   final void Function()? onPressed;
 
   final String text;
+  final IconData iconData;
 
-  const LeftSideOutlinedButton(
-      {Key? key, required this.onPressed, required this.text})
-      : super(key: key);
+  const LeftSideOutlinedButton({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+    required this.iconData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +35,8 @@ class LeftSideOutlinedButton extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          const Icon(
-            Icons.date_range,
+          Icon(
+            iconData,
             size: SizeTheme.iconMiddleSize,
             color: ColorTheme.itemSubColor,
           )

@@ -21,9 +21,10 @@ class StationDTO implements ResponseDTO {
         sLat = json['s_lat'],
         sLng = json['s_lng'];
 
-  Marker toMarker() => Marker(
+  Marker toMarker(Function() onTap) => Marker(
     markerId: MarkerId("$sId"),
     position: LatLng(sLat, sLng),
     infoWindow: InfoWindow(title: sName),
+    onTap: onTap,
   );
 }
