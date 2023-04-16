@@ -20,17 +20,22 @@ class MyApp extends StatelessWidget {
     DrawerAppBarScaffoldController().changeDrawerItems({
       "Home": (context) => Navigator.popAndPushNamed(context, '/'),
       "UserInfo": (context) => Navigator.popAndPushNamed(context, '/user/info'),
-      "Reservation": (context) => Navigator.popAndPushNamed(context, '/reservation/check'),
-      "Logout": (_) => MemberService().logout(),
+      "Reservation": (context) =>
+          Navigator.popAndPushNamed(context, '/reservation/check'),
+      "Logout": (context) {
+        MemberService().logout();
+        Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+      },
     });
     return FutureBuilder(
         future: dotenv.load(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            final jsCode = '''
-              let script = document.createElement('script');
-              script.src = `https://maps.googleapis.com/maps/api/js?key=${dotenv.env['GOOGLE_MAP_KEY']}&callback=console.log`;
-              document.head.appendChild(script);
+            final jsCode = ''' {
+              let googleMapScript = document.createElement('script');
+              googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${dotenv.env['GOOGLE_MAP_KEY']}&callback=console.log`;
+              document.head.appendChild(googleMapScript);
+            }
             ''';
             final script = html.ScriptElement()
               ..type = 'text/javascript'

@@ -73,4 +73,9 @@ class DrawerAppBarScaffoldController extends ChangeNotifier {
     this.drawerItems = drawerItems;
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    // don't make it dispose when DrawerAppBarScaffold is disposed
+  }
 }
