@@ -18,7 +18,7 @@ class NavigationDrawer extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             currentAccountPicture: const CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.gif'),
+              backgroundImage: AssetImage('assets/profile.png'),
             ),
             accountName: Text(
               controller.memberName,
