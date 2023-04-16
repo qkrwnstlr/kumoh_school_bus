@@ -4,11 +4,13 @@ import 'package:kumoh_school_bus/theme/themes.dart';
 class TitledText extends StatelessWidget {
   final String title;
   final String text;
+  final Color backgroundColor;
 
   const TitledText({
     Key? key,
     required this.title,
     required this.text,
+    this.backgroundColor = ColorTheme.itemMainColor,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class TitledText extends StatelessWidget {
           Container(
             width: constraints.maxWidth,
             decoration: BoxDecoration(
-              color: ColorTheme.itemMainColor,
+              color: backgroundColor,
               borderRadius: BorderRadius.circular(SizeTheme.borderRadiusSize),
             ),
             child: Padding(
