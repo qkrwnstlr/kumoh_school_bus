@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/user_info_dto.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
-import 'package:kumoh_school_bus/view_model/user_info_view_model.dart';
+import 'package:kumoh_school_bus/view_model/member_info_view_model.dart';
 import 'package:provider/provider.dart';
 
-class UserInfoView extends StatelessWidget {
-  const UserInfoView({Key? key}) : super(key: key);
+class MemberInfoView extends StatelessWidget {
+  const MemberInfoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-    return ChangeNotifierProvider<UserInfoViewModel>(
-      create: (_) => UserInfoViewModel(
+    return ChangeNotifierProvider<MemberInfoViewModel>(
+      create: (_) => MemberInfoViewModel(
         userInfoDTO: arguments['userInfoDTO'] ??
             UserInfoDTO(name: "name", studentID: "studentID", major: "major"),
       ),
-      child: Consumer<UserInfoViewModel>(
-        builder: (context, provider, child) => _UserInfoPage(
+      child: Consumer<MemberInfoViewModel>(
+        builder: (context, provider, child) => _MemberInfoPage(
           viewModel: provider,
         ),
       ),
@@ -26,17 +26,17 @@ class UserInfoView extends StatelessWidget {
   }
 }
 
-class _UserInfoPage extends StatefulWidget {
-  final UserInfoViewModel viewModel;
+class _MemberInfoPage extends StatefulWidget {
+  final MemberInfoViewModel viewModel;
 
-  const _UserInfoPage({Key? key, required this.viewModel}) : super(key: key);
+  const _MemberInfoPage({Key? key, required this.viewModel}) : super(key: key);
 
   @override
-  State<_UserInfoPage> createState() => _UserInfoPageState();
+  State<_MemberInfoPage> createState() => _MemberInfoPageState();
 }
 
-class _UserInfoPageState extends State<_UserInfoPage> {
-  late final UserInfoViewModel _viewModel = widget.viewModel;
+class _MemberInfoPageState extends State<_MemberInfoPage> {
+  late final MemberInfoViewModel _viewModel = widget.viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +44,16 @@ class _UserInfoPageState extends State<_UserInfoPage> {
       appBar: VanillaAppBar.build(context, title: "Kumoh School Bus"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
-        child: UserInfoItem(userInfoDTO: _viewModel.userInfoDTO),
+        child: MemberInfoItem(userInfoDTO: _viewModel.userInfoDTO),
       ),
     );
   }
 }
 
-class UserInfoItem extends StatelessWidget {
+class MemberInfoItem extends StatelessWidget {
   final UserInfoDTO userInfoDTO;
 
-  const UserInfoItem({
+  const MemberInfoItem({
     Key? key,
     required this.userInfoDTO,
   }) : super(key: key);

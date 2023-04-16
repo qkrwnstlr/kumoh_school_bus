@@ -33,11 +33,11 @@ class MyApp extends StatelessWidget {
               initialRoute: '/user/info',
               routes: {
                 '/login': (context) => const LoginView(),
-                '/user/signup': (context) => const UserSignupView(),
+                '/user/signup': (context) => const MemberSignupView(),
                 '/': (context) => const MainView(),
                 '/reservation': (context) => const ReservationView(),
                 '/reservation/check': (context) => const CheckReservationView(),
-                '/user/info': (context) => const UserInfoView(),
+                '/user/info': (context) => const MemberInfoView(),
               },
               localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,

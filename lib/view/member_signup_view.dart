@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 import '../theme/themes.dart';
 import 'common/commons.dart';
 
-class UserSignupView extends StatelessWidget {
-  const UserSignupView({Key? key}) : super(key: key);
+class MemberSignupView extends StatelessWidget {
+  const MemberSignupView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<UserSignupViewModel>(
-      create: (_) => UserSignupViewModel(),
-      child: Consumer<UserSignupViewModel>(
-        builder: (context, provider, child) => _UserSignupPage(
+    return ChangeNotifierProvider<MemberSignupViewModel>(
+      create: (_) => MemberSignupViewModel(),
+      child: Consumer<MemberSignupViewModel>(
+        builder: (context, provider, child) => _MemberSignupPage(
           viewModel: provider,
         ),
       ),
@@ -21,17 +21,17 @@ class UserSignupView extends StatelessWidget {
   }
 }
 
-class _UserSignupPage extends StatefulWidget {
-  final UserSignupViewModel viewModel;
+class _MemberSignupPage extends StatefulWidget {
+  final MemberSignupViewModel viewModel;
 
-  const _UserSignupPage({Key? key, required this.viewModel}) : super(key: key);
+  const _MemberSignupPage({Key? key, required this.viewModel}) : super(key: key);
 
   @override
-  State<_UserSignupPage> createState() => _UserSignupPageState();
+  State<_MemberSignupPage> createState() => _MemberSignupPageState();
 }
 
-class _UserSignupPageState extends State<_UserSignupPage> {
-  late final UserSignupViewModel _viewModel = widget.viewModel;
+class _MemberSignupPageState extends State<_MemberSignupPage> {
+  late final MemberSignupViewModel _viewModel = widget.viewModel;
 
   @override
   Widget build(BuildContext context) {

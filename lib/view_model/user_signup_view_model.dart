@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class UserSignupViewModel extends ChangeNotifier {
+class MemberSignupViewModel extends ChangeNotifier {
   late final TextEditingController idController;
   late final TextEditingController passwordController;
   late final TextEditingController checkPasswordController;
 
-  UserSignupViewModel() {
+  MemberSignupViewModel() {
     idController = TextEditingController(text: '');
     passwordController = TextEditingController(text: '');
     checkPasswordController = TextEditingController(text: '');
