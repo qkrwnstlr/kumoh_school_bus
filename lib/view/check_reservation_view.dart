@@ -13,10 +13,7 @@ class CheckReservationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CheckReservationViewModel>(
-      create: (_) => CheckReservationViewModel(reservationList: [
-        ReservationDTO(id: 1, from: "from", to: "to", by: "by", when: "when"),
-        ReservationDTO(id: 1, from: "from", to: "to", by: "by", when: "when"),
-      ]),
+      create: (_) => CheckReservationViewModel(),
       child: Consumer<CheckReservationViewModel>(
         builder: (context, provider, child) => _CheckReservationPage(
           viewModel: provider,

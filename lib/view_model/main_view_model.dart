@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
-import 'package:kumoh_school_bus/model/dto/time_seat_dto.dart';
+import 'package:kumoh_school_bus/model/service/services.dart';
+import 'package:kumoh_school_bus/util/date_format.dart';
 
 import '../type/types.dart';
 
 class MainViewModel extends ChangeNotifier {
+  final BusService _searchBusService = BusService();
+
   Direction direction = Direction.toDaegu;
   DateTime reservationDate = DateTime.now();
   StationDTO? station;
-  List<StationDTO> stations = [
-    StationDTO(sId: 1, sName: "sName1", sLat: 35.8714354, sLng: 128.601445),
-    StationDTO(sId: 2, sName: "sName2", sLat: 35.8714, sLng: 128.601),
-  ];
+  late List<StationDTO> stations;
   late Set<Marker> setOfMarkers;
 
-  void initMarkers() => setOfMarkers = stations
-      .map((e) => e.toMarker(() {
-            station = e;
-            notifyListeners();
-          }))
-      .toSet();
+  MainViewModel() {
+    stations = _searchBusService.stationDTOList!;
+    setOfMarkers = stations
+        .map((e) => e.toMarker(() {
+              station = e;
+              notifyListeners();
+            }))
+        .toSet();
+  }
 
   void onDirectionChange(dynamic value) {
     direction = value;
@@ -32,72 +35,23 @@ class MainViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void navigateToReservationPage(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      "/reservation",
-      arguments: {
-        'searchResponseDTO': SearchResponseDTO(
-          busList: [
-            BusDTO(
-              busNum: "하교-1호",
-              busTimeSeatList: [
-                BusTimeSeatDTO(
-                  busTimeDTO: BusTimeDTO(
-                    startTime: "18시 15분",
-                    endTime: "19시 25분",
-                  ),
-                  timeSeatList: [
-                    TimeSeatDTO(isReserved: false, seatNum: 1),
-                    TimeSeatDTO(isReserved: false, seatNum: 2),
-                    TimeSeatDTO(isReserved: false, seatNum: 3),
-                  ],
-                ),
-                BusTimeSeatDTO(
-                  busTimeDTO: BusTimeDTO(
-                    startTime: "20시 00분",
-                    endTime: "21시 10분",
-                  ),
-                  timeSeatList: [
-                    TimeSeatDTO(isReserved: false, seatNum: 1),
-                    TimeSeatDTO(isReserved: false, seatNum: 2),
-                    TimeSeatDTO(isReserved: false, seatNum: 3),
-                  ],
-                ),
-              ],
-            ),
-            BusDTO(
-              busNum: "하교-2호",
-              busTimeSeatList: [
-                BusTimeSeatDTO(
-                  busTimeDTO: BusTimeDTO(
-                    startTime: "18시 15분",
-                    endTime: "19시 05분",
-                  ),
-                  timeSeatList: [
-                    TimeSeatDTO(isReserved: false, seatNum: 1),
-                    TimeSeatDTO(isReserved: false, seatNum: 2),
-                    TimeSeatDTO(isReserved: false, seatNum: 3),
-                  ],
-                ),
-                BusTimeSeatDTO(
-                  busTimeDTO: BusTimeDTO(
-                    startTime: "20시 00분",
-                    endTime: "20시 55분",
-                  ),
-                  timeSeatList: [
-                    TimeSeatDTO(isReserved: false, seatNum: 1),
-                    TimeSeatDTO(isReserved: false, seatNum: 2),
-                    TimeSeatDTO(isReserved: false, seatNum: 3),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-        'station': station,
-        'reservationDate': reservationDate,
-      },
+  void navigateToReservationPage(BuildContext context, bool mounted) async {
+    await _searchBusService.requestSearchBus(
+      SearchRequestDTO(
+        date: onlyDateFormat.format(reservationDate),
+        type: direction.toString(),
+        station: station!.sId,
+      ),
     );
+    if (mounted) {
+      Navigator.pushNamed(
+        context,
+        "/reservation",
+        arguments: {
+          'station': station,
+          'reservationDate': reservationDate,
+        },
+      );
+    }
   }
 }

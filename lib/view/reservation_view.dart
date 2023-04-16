@@ -16,7 +16,6 @@ class ReservationView extends StatelessWidget {
         <String, dynamic>{}) as Map;
     return ChangeNotifierProvider<ReservationViewModel>(
       create: (_) => ReservationViewModel(
-        searchResponseDTO: arguments["searchResponseDTO"],
         station: arguments['station'],
         reservationDate: arguments['reservationDate'],
       ),

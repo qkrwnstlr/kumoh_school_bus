@@ -5,8 +5,9 @@ import '../model/service/services.dart';
 
 class ReservationViewModel extends ChangeNotifier {
   final MemberService _memberService = MemberService();
+  final BusService _searchBusService = BusService();
 
-  final SearchResponseDTO searchResponseDTO;
+  late SearchResponseDTO searchResponseDTO;
   final StationDTO station;
   final DateTime reservationDate;
 
@@ -25,10 +26,10 @@ class ReservationViewModel extends ChangeNotifier {
   late int seat;
 
   ReservationViewModel({
-    required this.searchResponseDTO,
     required this.station,
     required this.reservationDate,
   }) {
+    searchResponseDTO = _searchBusService.searchResponseDTO!;
     busList = searchResponseDTO.busList;
     _setBusIndex(0);
   }
@@ -70,5 +71,11 @@ class ReservationViewModel extends ChangeNotifier {
 
   void onReservationButtonClicked(BuildContext context) {
     Navigator.pushNamed(context, "/reservation/check");
+  }
+
+  @override
+  void dispose() {
+    _searchBusService.clearSearchResponseDTO();
+    super.dispose();
   }
 }

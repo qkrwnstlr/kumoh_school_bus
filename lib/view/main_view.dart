@@ -37,7 +37,6 @@ class _MainPageState extends State<_MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    _viewModel.initMarkers();
     return DrawerAppBarScaffold(
       appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
@@ -87,7 +86,7 @@ class _MainPageState extends State<_MainPage> {
                 child: CentralOutlinedButton(
                   onPressed: _viewModel.station == null
                       ? null
-                      : () => _viewModel.navigateToReservationPage(context),
+                      : () => _viewModel.navigateToReservationPage(context, mounted),
                   text: "조회 하기",
                 ),
               ),
