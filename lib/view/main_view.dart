@@ -37,6 +37,7 @@ class _MainPageState extends State<_MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    _viewModel.init();
     return DrawerAppBarScaffold(
       appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(

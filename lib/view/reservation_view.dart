@@ -16,6 +16,7 @@ class ReservationView extends StatelessWidget {
         <String, dynamic>{}) as Map;
     return ChangeNotifierProvider<ReservationViewModel>(
       create: (_) => ReservationViewModel(
+        direction: arguments['direction'],
         station: arguments['station'],
         reservationDate: arguments['reservationDate'],
       ),
@@ -131,7 +132,10 @@ class _ReservationPageState extends State<_ReservationPage> {
             Hero(
               tag: "Button",
               child: CentralOutlinedButton(
-                onPressed: () => _viewModel.onReservationButtonClicked(context),
+                onPressed: () => _viewModel.onReservationButtonClicked(
+                  context,
+                  mounted,
+                ),
                 text: "예약 하기",
               ),
             ),

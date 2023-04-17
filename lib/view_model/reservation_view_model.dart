@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/type/direction.dart';
+import 'package:kumoh_school_bus/util/date_format.dart';
 
 import '../model/service/services.dart';
 
 class ReservationViewModel extends ChangeNotifier {
   final MemberService _memberService = MemberService();
   final BusService _searchBusService = BusService();
+  final ReservationService _reservationService = ReservationService();
 
   late SearchResponseDTO searchResponseDTO;
+  final Direction direction;
   final StationDTO station;
   final DateTime reservationDate;
 
@@ -26,6 +30,7 @@ class ReservationViewModel extends ChangeNotifier {
   late int seat;
 
   ReservationViewModel({
+    required this.direction,
     required this.station,
     required this.reservationDate,
   }) {
@@ -42,7 +47,10 @@ class ReservationViewModel extends ChangeNotifier {
   void _setBusTimeIndex(int index) {
     busTimeIndex = index;
     currentTime = busTimeList[busTimeIndex];
-    seatList = busTimeSeatList[busTimeIndex].timeSeatList.map((e) => e.seatNum).toList();
+    seatList = busTimeSeatList[busTimeIndex]
+        .timeSeatList
+        .map((e) => e.seatNum)
+        .toList();
     _setSeatIndex(0);
   }
 
@@ -69,8 +77,14 @@ class ReservationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onReservationButtonClicked(BuildContext context) {
-    Navigator.pushNamed(context, "/reservation/check");
+  Future onReservationButtonClicked(BuildContext context, bool mounted) async {
+    await _reservationService.requestAddReservation(ReservationAddRequestDTO(
+      from: direction == Direction.toGumi ? station.sName : "금오공대",
+      to: direction == Direction.toDaegu ? "금오공대" : station.sName,
+      by: bus.busNum,
+      when: dateDayFormat.format(reservationDate),
+    ));
+    if (mounted) Navigator.pushNamed(context, "/reservation/check");
   }
 
   @override

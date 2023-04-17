@@ -1,12 +1,12 @@
 import 'package:kumoh_school_bus/model/dto/request_dto.dart';
 
-class RequestAddReservationDTO implements RequestDTO {
+class ReservationAddRequestDTO implements RequestDTO {
   final String from;
   final String to;
   final String by;
   final String when;
 
-  RequestAddReservationDTO({
+  ReservationAddRequestDTO({
     required this.from,
     required this.to,
     required this.by,

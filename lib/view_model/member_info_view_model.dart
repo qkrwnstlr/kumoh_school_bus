@@ -6,7 +6,5 @@ import '../model/service/services.dart';
 class MemberInfoViewModel extends ChangeNotifier {
   final MemberService _memberService = MemberService();
 
-  MemberInfoDTO? get memberInfoDTO =>
-      _memberService.memberInfoDTO ??
-      MemberInfoDTO(name: "name", studentID: "studentID", major: "major");
+  MemberInfoDTO? get memberInfoDTO => _memberService.memberInfoDTO;
 }

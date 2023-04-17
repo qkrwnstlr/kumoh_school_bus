@@ -8,14 +8,16 @@ import '../type/types.dart';
 
 class MainViewModel extends ChangeNotifier {
   final BusService _searchBusService = BusService();
+  final BusService _busService = BusService();
 
   Direction direction = Direction.toDaegu;
   DateTime reservationDate = DateTime.now();
   StationDTO? station;
-  late List<StationDTO> stations;
-  late Set<Marker> setOfMarkers;
+  List<StationDTO> stations = [];
+  Set<Marker> setOfMarkers = {};
 
-  MainViewModel() {
+  Future init() async {
+    await _busService.requestStationList();
     stations = _searchBusService.stationDTOList!;
     setOfMarkers = stations
         .map((e) => e.toMarker(() {
@@ -23,6 +25,7 @@ class MainViewModel extends ChangeNotifier {
               notifyListeners();
             }))
         .toSet();
+    notifyListeners();
   }
 
   void onDirectionChange(dynamic value) {
@@ -48,6 +51,7 @@ class MainViewModel extends ChangeNotifier {
         context,
         "/reservation",
         arguments: {
+          'direction': direction,
           'station': station,
           'reservationDate': reservationDate,
         },

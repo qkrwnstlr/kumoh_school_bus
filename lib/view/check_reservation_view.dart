@@ -38,6 +38,7 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
 
   @override
   Widget build(BuildContext context) {
+    _viewModel.init();
     return DrawerAppBarScaffold(
       appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
@@ -50,6 +51,7 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
           itemBuilder: (BuildContext context, int index) =>
               _CheckReservationItem(
             reservationDTO: _viewModel.reservationList[index],
+            onCancelButtonClick: _viewModel.onCancelButtonClick,
           ),
         ),
       ),
@@ -59,10 +61,12 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
 
 class _CheckReservationItem extends StatelessWidget {
   final ReservationDTO reservationDTO;
+  final Future Function() onCancelButtonClick;
 
   const _CheckReservationItem({
     Key? key,
     required this.reservationDTO,
+    required this.onCancelButtonClick,
   }) : super(key: key);
 
   @override
@@ -132,7 +136,9 @@ class _CheckReservationItem extends StatelessWidget {
             child: Column(
               children: [
                 WrapOutlinedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _showMyDialog(context);
+                  },
                   text: '예약 취소',
                 ),
               ],
@@ -140,6 +146,38 @@ class _CheckReservationItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            '예약 취소',
+            style: TextStyleTheme.textMainStyleMiddle,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('This is a demo alert dialog.'),
+                Text('Would you like to approve of this message?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                onCancelButtonClick();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

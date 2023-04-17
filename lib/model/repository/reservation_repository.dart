@@ -18,7 +18,7 @@ class ReservationRepository {
   }
 
   Future<List<ReservationDTO>> requestAddReservation(
-      RequestAddReservationDTO requestDTO) async {
+      ReservationAddRequestDTO requestDTO) async {
     return [
       ReservationDTO(id: 1, from: "from", to: "to", by: "by", when: "when"),
       ReservationDTO(id: 2, from: "from", to: "to", by: "by", when: "when"),
@@ -29,6 +29,12 @@ class ReservationRepository {
         by: requestDTO.by,
         when: requestDTO.when,
       ),
+    ];
+  }
+
+  Future<List<ReservationDTO>> requestDeleteReservation(ReservationDeleteRequestDTO requestDTO) async {
+    return [
+      ReservationDTO(id: 1, from: "from", to: "to", by: "by", when: "when"),
     ];
   }
 }

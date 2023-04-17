@@ -20,4 +20,12 @@ class ReservationService {
   Future requestReservationList() async {
     _reservationDTOList = await _repository.requestReservationList();
   }
+
+  Future requestDeleteReservation(ReservationDeleteRequestDTO requestDTO) async {
+    _reservationDTOList = await _repository.requestDeleteReservation(requestDTO);
+  }
+
+  Future requestAddReservation(ReservationAddRequestDTO requestDTO) async {
+    _reservationDTOList = await _repository.requestAddReservation(requestDTO);
+  }
 }
