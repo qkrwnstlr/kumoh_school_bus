@@ -21,7 +21,7 @@ class MemberService {
     _memberInfoDTO = await _repository.login();
     DrawerAppBarScaffoldController().changeMemberInfo(
       _memberInfoDTO!.name,
-      _memberInfoDTO!.studentID,
+      _memberInfoDTO!.id,
     );
   }
 
@@ -31,5 +31,10 @@ class MemberService {
 
   Future editInfo(String password) async {
     await _repository.editInfo(password);
+  }
+
+  Future removeMember() async {
+    await _repository.removeMember(_memberInfoDTO!.id);
+    _memberInfoDTO = null;
   }
 }
