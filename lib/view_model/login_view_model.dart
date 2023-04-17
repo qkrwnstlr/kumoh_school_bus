@@ -7,6 +7,7 @@ class LoginViewModel extends ChangeNotifier {
   late final TextEditingController passwordController;
 
   final MemberService _memberService = MemberService();
+  final BusService _busService = BusService();
 
   LoginViewModel() {
     idController = TextEditingController(text: '');
@@ -15,6 +16,7 @@ class LoginViewModel extends ChangeNotifier {
 
   void login(BuildContext context, bool mounted) async {
     await _memberService.login();
+    await _busService.requestStationList();
     if (mounted) {
       Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
     }
