@@ -16,16 +16,17 @@ class MainViewModel extends ChangeNotifier {
   List<StationDTO> stations = [];
   Set<Marker> setOfMarkers = {};
 
-  Future init() async {
-    await _busService.requestStationList();
-    stations = _searchBusService.stationDTOList!;
-    setOfMarkers = stations
-        .map((e) => e.toMarker(() {
-              station = e;
-              notifyListeners();
-            }))
-        .toSet();
-    notifyListeners();
+  MainViewModel() {
+    _busService.requestStationList().then((value) {
+      stations = _searchBusService.stationDTOList;
+      setOfMarkers = stations
+          .map((e) => e.toMarker(() {
+        station = e;
+        notifyListeners();
+      }))
+          .toSet();
+      notifyListeners();
+    });
   }
 
   void onDirectionChange(dynamic value) {
