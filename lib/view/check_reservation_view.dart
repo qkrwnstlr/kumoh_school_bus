@@ -167,9 +167,15 @@ class _CheckReservationItem extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Approve'),
+              child: const Text('예'),
               onPressed: () {
                 onCancelButtonClick();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('아니요'),
+              onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
