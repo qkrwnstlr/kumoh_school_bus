@@ -14,10 +14,9 @@ class MemberInfoView extends StatelessWidget {
     return ChangeNotifierProvider<MemberInfoViewModel>(
       create: (_) => MemberInfoViewModel(),
       child: Consumer<MemberInfoViewModel>(
-        builder: (context, provider, child) =>
-            _MemberInfoPage(
-              viewModel: provider,
-            ),
+        builder: (context, provider, child) => _MemberInfoPage(
+          viewModel: provider,
+        ),
       ),
     );
   }
@@ -43,6 +42,8 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
         color: ColorTheme.backgroundMainColor,
         child: MemberInfoItem(
           userInfoDTO: _viewModel.memberInfoDTO!,
+          onRemoveButtonClick: () =>
+              _viewModel.onRemoveButtonClick(context, mounted),
           onEditButtonClick: _viewModel.onEditButtonClick,
           passwordController: _viewModel.passwordController,
           checkPasswordController: _viewModel.checkPasswordController,
@@ -55,12 +56,14 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
 class MemberInfoItem extends StatelessWidget {
   final MemberInfoDTO userInfoDTO;
   final Future<bool> Function() onEditButtonClick;
+  final Future Function() onRemoveButtonClick;
   final TextEditingController passwordController;
   final TextEditingController checkPasswordController;
 
   const MemberInfoItem({
     Key? key,
     required this.userInfoDTO,
+    required this.onRemoveButtonClick,
     required this.onEditButtonClick,
     required this.passwordController,
     required this.checkPasswordController,
@@ -103,7 +106,7 @@ class MemberInfoItem extends StatelessWidget {
                       const SizedBox(height: SizeTheme.paddingMiddleSize),
                       TitledText(
                         title: "학번",
-                        text: userInfoDTO.studentID,
+                        text: userInfoDTO.id,
                         backgroundColor: ColorTheme.backgroundMainColor,
                       ),
                       const SizedBox(height: SizeTheme.paddingMiddleSize),
@@ -122,16 +125,25 @@ class MemberInfoItem extends StatelessWidget {
         Positioned(
           top: SizeTheme.paddingSmallSize,
           right: SizeTheme.paddingLargeSize,
-          child: IconButton(
-            onPressed: () => _showCancelDialog(context),
-            icon: const Icon(Icons.edit),
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () => _showEditDialog(context),
+                icon: const Icon(Icons.edit),
+              ),
+              const SizedBox(width: SizeTheme.paddingMiddleSize),
+              IconButton(
+                onPressed: () => _showRemoveDialog(context),
+                icon: const Icon(Icons.settings),
+              ),
+            ],
           ),
         ),
       ],
     );
   }
 
-  Future<void> _showCancelDialog(BuildContext context) async {
+  Future<void> _showEditDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -165,15 +177,67 @@ class MemberInfoItem extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('예'),
+              child: const Text(
+                '예',
+                style: TextStyleTheme.textMainStyleMiddle,
+              ),
               onPressed: () async {
-                if(await onEditButtonClick()) {
+                if (await onEditButtonClick()) {
                   Navigator.of(context).pop();
                 }
               },
             ),
             TextButton(
-              child: const Text('아니요'),
+              child: const Text(
+                '아니요',
+                style: TextStyleTheme.textMainStyleMiddle,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showRemoveDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            '회원 탈퇴',
+            style: TextStyleTheme.textMainStyleMiddle,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                  "정말 탈퇴하시겠습니까?",
+                  style: TextStyleTheme.textMainStyleMiddle,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text(
+                '예',
+                style: TextStyleTheme.textMainStyleMiddle,
+              ),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await onRemoveButtonClick();
+              },
+            ),
+            TextButton(
+              child: const Text(
+                '아니요',
+                style: TextStyleTheme.textMainStyleMiddle,
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

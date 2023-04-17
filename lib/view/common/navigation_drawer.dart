@@ -50,6 +50,8 @@ class NavigationDrawerController {
   final String memberConnection;
   late List<Widget> listTiles;
 
+  late final Function() navigateToLoginView;
+
   NavigationDrawerController({
     required this.context,
     required this.memberName,
@@ -59,5 +61,6 @@ class NavigationDrawerController {
     listTiles = items.keys
         .map((key) => ListTile(title: Text(key), onTap: () => items[key]!(context)))
         .toList();
+    navigateToLoginView = () => items['logout']!(context);
   }
 }

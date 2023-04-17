@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
 import 'package:kumoh_school_bus/model/repository/member_repository.dart';
 import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
@@ -34,6 +35,7 @@ class MemberService {
   }
 
   Future removeMember() async {
+    if(_memberInfoDTO == null) return;
     await _repository.removeMember(_memberInfoDTO!.id);
     _memberInfoDTO = null;
   }

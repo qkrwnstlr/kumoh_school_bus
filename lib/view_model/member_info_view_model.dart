@@ -19,4 +19,11 @@ class MemberInfoViewModel extends ChangeNotifier {
     }
     return false;
   }
+
+  Future onRemoveButtonClick(BuildContext context, bool mounted) async {
+    await _memberService.removeMember();
+    if (mounted) {
+      Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+    }
+  }
 }
