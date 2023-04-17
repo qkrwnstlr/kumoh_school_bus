@@ -14,9 +14,10 @@ class MemberInfoView extends StatelessWidget {
     return ChangeNotifierProvider<MemberInfoViewModel>(
       create: (_) => MemberInfoViewModel(),
       child: Consumer<MemberInfoViewModel>(
-        builder: (context, provider, child) => _MemberInfoPage(
-          viewModel: provider,
-        ),
+        builder: (context, provider, child) =>
+            _MemberInfoPage(
+              viewModel: provider,
+            ),
       ),
     );
   }
@@ -40,7 +41,12 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
       appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
-        child: MemberInfoItem(userInfoDTO: _viewModel.memberInfoDTO!),
+        child: MemberInfoItem(
+          userInfoDTO: _viewModel.memberInfoDTO!,
+          onEditButtonClick: _viewModel.onEditButtonClick,
+          passwordController: _viewModel.passwordController,
+          checkPasswordController: _viewModel.checkPasswordController,
+        ),
       ),
     );
   }
@@ -48,10 +54,16 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
 
 class MemberInfoItem extends StatelessWidget {
   final MemberInfoDTO userInfoDTO;
+  final Future<bool> Function() onEditButtonClick;
+  final TextEditingController passwordController;
+  final TextEditingController checkPasswordController;
 
   const MemberInfoItem({
     Key? key,
     required this.userInfoDTO,
+    required this.onEditButtonClick,
+    required this.passwordController,
+    required this.checkPasswordController,
   }) : super(key: key);
 
   @override
@@ -111,11 +123,64 @@ class MemberInfoItem extends StatelessWidget {
           top: SizeTheme.paddingSmallSize,
           right: SizeTheme.paddingLargeSize,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () => _showCancelDialog(context),
             icon: const Icon(Icons.edit),
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _showCancelDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            '비밀번호 변경',
+            style: TextStyleTheme.textMainStyleMiddle,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TitledTextFormField(
+                  labelText: "비밀번호",
+                  hintText: "Password",
+                  prefixIcon: Icons.lock,
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: null,
+                  controller: passwordController,
+                ),
+                TitledTextFormField(
+                  labelText: "비밀번호",
+                  hintText: "Password",
+                  prefixIcon: Icons.lock,
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: null,
+                  controller: checkPasswordController,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('예'),
+              onPressed: () async {
+                if(await onEditButtonClick()) {
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+            TextButton(
+              child: const Text('아니요'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

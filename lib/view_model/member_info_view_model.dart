@@ -7,4 +7,16 @@ class MemberInfoViewModel extends ChangeNotifier {
   final MemberService _memberService = MemberService();
 
   MemberInfoDTO? get memberInfoDTO => _memberService.memberInfoDTO;
+
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController checkPasswordController = TextEditingController();
+
+  Future<bool> onEditButtonClick() async {
+    if (passwordController.text == checkPasswordController.text &&
+        passwordController.text != "") {
+      await _memberService.editInfo(passwordController.text);
+      return true;
+    }
+    return false;
+  }
 }

@@ -18,7 +18,5 @@ class MemberRepository {
     );
   }
 
-  Future<MemberInfoDTO> editInfo(MemberInfoDTO memberInfoDTO) async {
-    return memberInfoDTO;
-  }
+  Future editInfo(String password) async {}
 }

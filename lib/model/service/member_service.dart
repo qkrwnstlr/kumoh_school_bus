@@ -29,15 +29,7 @@ class MemberService {
     _memberInfoDTO = null;
   }
 
-  Future editInfo(MemberInfoDTO memberInfoDTO) async {
-    await editInfo(memberInfoDTO).then((value) {
-      _memberInfoDTO?.name = value.name;
-      _memberInfoDTO?.major = value.major;
-      _memberInfoDTO?.studentID = value.studentID;
-    });
-    DrawerAppBarScaffoldController().changeMemberInfo(
-      _memberInfoDTO!.name,
-      _memberInfoDTO!.studentID,
-    );
+  Future editInfo(String password) async {
+    await _repository.editInfo(password);
   }
 }
