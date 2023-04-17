@@ -12,12 +12,13 @@ class BusService {
 
   final BusRepository _repository = BusRepository();
 
-  List<StationDTO>? _stationDTOList;
+  final List<StationDTO> _stationDTOList = [];
 
-  List<StationDTO>? get stationDTOList => _stationDTOList;
+  List<StationDTO> get stationDTOList => _stationDTOList;
 
   Future requestStationList() async {
-    _stationDTOList ??= await _repository.requestStationList();
+    _stationDTOList.clear();
+    _stationDTOList.addAll(await _repository.requestStationList());
   }
 
   SearchResponseDTO? _searchResponseDTO;
@@ -25,7 +26,7 @@ class BusService {
   SearchResponseDTO? get searchResponseDTO => _searchResponseDTO;
 
   Future requestSearchBus(SearchRequestDTO requestDTO) async {
-    _searchResponseDTO = await _repository.requestSearchBus();
+    _searchResponseDTO = await _repository.requestSearchBus(requestDTO);
   }
 
   void clearSearchResponseDTO() {

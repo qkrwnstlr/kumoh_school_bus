@@ -30,7 +30,11 @@ class MemberService {
   }
 
   Future editInfo(MemberInfoDTO memberInfoDTO) async {
-    _memberInfoDTO = await editInfo(memberInfoDTO);
+    await editInfo(memberInfoDTO).then((value) {
+      _memberInfoDTO?.name = value.name;
+      _memberInfoDTO?.major = value.major;
+      _memberInfoDTO?.studentID = value.studentID;
+    });
     DrawerAppBarScaffoldController().changeMemberInfo(
       _memberInfoDTO!.name,
       _memberInfoDTO!.studentID,

@@ -38,7 +38,6 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
 
   @override
   Widget build(BuildContext context) {
-    _viewModel.init();
     return DrawerAppBarScaffold(
       appBarTitle: 'Kumoh School Bus',
       body: ScrollableContainer(
@@ -137,7 +136,7 @@ class _CheckReservationItem extends StatelessWidget {
               children: [
                 WrapOutlinedButton(
                   onPressed: () async {
-                    await _showMyDialog(context);
+                    await _showCancelDialog(context);
                   },
                   text: '예약 취소',
                 ),
@@ -149,7 +148,7 @@ class _CheckReservationItem extends StatelessWidget {
     );
   }
 
-  Future<void> _showMyDialog(BuildContext context) async {
+  Future<void> _showCancelDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -162,8 +161,7 @@ class _CheckReservationItem extends StatelessWidget {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('This is a demo alert dialog.'),
-                Text('Would you like to approve of this message?'),
+                Text('예약을 취소하시겠습니다?'),
               ],
             ),
           ),

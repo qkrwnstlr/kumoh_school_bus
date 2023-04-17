@@ -11,9 +11,9 @@ class ReservationViewModel extends ChangeNotifier {
   final ReservationService _reservationService = ReservationService();
 
   late SearchResponseDTO searchResponseDTO;
-  final Direction direction;
-  final StationDTO station;
-  final DateTime reservationDate;
+  late Direction direction;
+  late StationDTO station;
+  late DateTime reservationDate;
 
   late List<BusDTO> busList;
   late int busIndex;
@@ -29,12 +29,11 @@ class ReservationViewModel extends ChangeNotifier {
   late int seatIndex;
   late int seat;
 
-  ReservationViewModel({
-    required this.direction,
-    required this.station,
-    required this.reservationDate,
-  }) {
+  ReservationViewModel() {
     searchResponseDTO = _searchBusService.searchResponseDTO!;
+    direction = searchResponseDTO.direction;
+    station = searchResponseDTO.station;
+    reservationDate = searchResponseDTO.reservationDate;
     busList = searchResponseDTO.busList;
     _setBusIndex(0);
   }

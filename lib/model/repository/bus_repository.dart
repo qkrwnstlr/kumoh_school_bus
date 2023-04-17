@@ -1,4 +1,6 @@
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/type/types.dart';
+import 'package:kumoh_school_bus/util/date_format.dart';
 
 class BusRepository {
   BusRepository._privateConstructor();
@@ -16,7 +18,8 @@ class BusRepository {
     ];
   }
 
-  Future<SearchResponseDTO> requestSearchBus() async {
+  Future<SearchResponseDTO> requestSearchBus(
+      SearchRequestDTO requestDTO) async {
     return SearchResponseDTO(
       busList: [
         BusDTO(
@@ -74,6 +77,14 @@ class BusRepository {
           ],
         ),
       ],
+      direction: Direction.fromString(requestDTO.type),
+      station: StationDTO(
+        sId: 1,
+        sName: "sName",
+        sLat: 0.0,
+        sLng: 0.0,
+      ),
+      reservationDate: onlyDateFormat.parse(requestDTO.date),
     );
   }
 }

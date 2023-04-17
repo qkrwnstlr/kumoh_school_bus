@@ -12,14 +12,8 @@ class ReservationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
     return ChangeNotifierProvider<ReservationViewModel>(
-      create: (_) => ReservationViewModel(
-        direction: arguments['direction'],
-        station: arguments['station'],
-        reservationDate: arguments['reservationDate'],
-      ),
+      create: (_) => ReservationViewModel(),
       child: Consumer<ReservationViewModel>(
         builder: (context, provider, child) => _ReservationPage(
           viewModel: provider,

@@ -6,10 +6,11 @@ class CheckReservationViewModel extends ChangeNotifier {
   final ReservationService _reservationService = ReservationService();
   late List<ReservationDTO> reservationList = [];
 
-  Future init() async {
-    await _reservationService.requestReservationList();
-    reservationList = _reservationService.reservationDTOList!;
-    notifyListeners();
+  CheckReservationViewModel() {
+    _reservationService.requestReservationList().then((value) {
+      reservationList = _reservationService.reservationDTOList;
+      notifyListeners();
+    });
   }
 
   Future onCancelButtonClick() async {
