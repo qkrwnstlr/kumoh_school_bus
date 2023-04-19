@@ -74,19 +74,22 @@ class _MemberSignupPageState extends State<_MemberSignupPage> {
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             TitledTextFormField(
               labelText: "이름",
-              hintText: "Check Password",
+              hintText: "Name",
               prefixIcon: Icons.assignment_ind,
               keyboardType: TextInputType.text,
               validator: null,
               controller: _viewModel.checkPasswordController,
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
-            VanillaDropdownMenu(
+            TitledDropdownMenu(
+              labelText: "전공",
+              prefixIcon: Icons.school,
               value: _viewModel.major,
               items: _viewModel.majorList,
               onChanged: _viewModel.onMajorChanged,
               isExpanded: true,
             ),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
             Hero(
               tag: "Button",
               child: CentralOutlinedButton(
@@ -98,7 +101,7 @@ class _MemberSignupPageState extends State<_MemberSignupPage> {
                 text: "이미 회원이신가요?"),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             VanillaTextButton(
-              onPressed: () => _viewModel.navigatePop(context),
+              onPressed: () => _viewModel.navigateToDriverSignupPage(context),
               text: "버스 기사로 등록하고 싶으신가요?",
             ),
           ],

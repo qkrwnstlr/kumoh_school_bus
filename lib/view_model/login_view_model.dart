@@ -25,6 +25,6 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void navigateToUserSignupPage(BuildContext context) {
-    Navigator.pushNamed(context, "/user/signup");
+    Navigator.pushNamed(context, "/signup/user");
   }
 }

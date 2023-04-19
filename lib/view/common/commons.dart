@@ -12,3 +12,4 @@ export 'vanilla_google_map.dart';
 export 'titled_outlined_container.dart';
 export 'wrap_outlined_button.dart';
 export 'titled_text.dart';
+export 'titled_dropdown_menu.dart';

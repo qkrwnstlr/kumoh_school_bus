@@ -8,6 +8,8 @@ class OutlinedDropdownMenu<T> extends StatelessWidget {
   final List<T> items;
   final void Function(dynamic) onChanged;
   final bool isExpanded;
+  final double verticalPadding;
+  final double horizontalPadding;
 
   const OutlinedDropdownMenu({
     Key? key,
@@ -15,6 +17,8 @@ class OutlinedDropdownMenu<T> extends StatelessWidget {
     required this.items,
     required this.onChanged,
     required this.isExpanded,
+    this.verticalPadding = SizeTheme.paddingMiddleSize,
+    this.horizontalPadding = SizeTheme.paddingLargeSize,
   }) : super(key: key);
 
   @override
@@ -25,9 +29,9 @@ class OutlinedDropdownMenu<T> extends StatelessWidget {
         borderRadius: BorderRadius.circular(SizeTheme.borderRadiusSize),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: SizeTheme.paddingMiddleSize,
-          horizontal: SizeTheme.paddingLargeSize,
+        padding: EdgeInsets.symmetric(
+          vertical: verticalPadding,
+          horizontal: horizontalPadding,
         ),
         child: VanillaDropdownMenu(
           value: value,

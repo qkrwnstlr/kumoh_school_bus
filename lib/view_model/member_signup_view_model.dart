@@ -20,6 +20,9 @@ class MemberSignupViewModel extends ChangeNotifier {
     passwordController = TextEditingController(text: '');
     checkPasswordController = TextEditingController(text: '');
     nameController = TextEditingController(text: '');
+    majorList = [...Major.values.where((element) => element != Major.driver)];
+    majorIndex = 0;
+    major = majorList[majorIndex];
   }
 
   void onMajorChanged(dynamic value) {
@@ -36,12 +39,15 @@ class MemberSignupViewModel extends ChangeNotifier {
       name: nameController.text,
       major: major,
     ));
-    if(mounted) Navigator.pop(context);
+    if (mounted) Navigator.pop(context);
   }
 
   void navigatePop(BuildContext context) {
     Navigator.pop(context);
   }
 
-  void navigateToDriverSignupPage(BuildContext context) {}
+  void navigateToDriverSignupPage(BuildContext context) {
+    Navigator.pushNamed(context, "/signup/driver")
+        .then((value) => Navigator.pop(context));
+  }
 }
