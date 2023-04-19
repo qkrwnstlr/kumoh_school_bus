@@ -11,8 +11,8 @@ class BusTimeDTO implements ResponseDTO {
 
   @override
   BusTimeDTO.fromJson(Map<String, dynamic> json)
-      : startTime = json['startTimeList'],
-        endTime = json['endTimeList'];
+      : startTime = json['startTime'],
+        endTime = json['endTime'];
 
   @override
   String toString() => startTime;

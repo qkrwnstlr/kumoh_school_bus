@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/type/types.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
 import 'package:kumoh_school_bus/view_model/check_reservation_view_model.dart';
 import 'package:provider/provider.dart';
@@ -47,10 +48,15 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.only(top: SizeTheme.paddingMiddleSize),
           itemCount: _viewModel.reservationList.length,
-          itemBuilder: (BuildContext context, int index) =>
+          itemBuilder: (BuildContext context, int index) => Column(
+            children: [
               _CheckReservationItem(
-            reservationDTO: _viewModel.reservationList[index],
-            onCancelButtonClick: _viewModel.onCancelButtonClick,
+                reservationDTO: _viewModel.reservationList[index],
+                onCancelButtonClick: () => _viewModel
+                    .onCancelButtonClick(_viewModel.reservationList[index].id),
+              ),
+              const SizedBox(height: SizeTheme.paddingLargeSize)
+            ],
           ),
         ),
       ),
@@ -92,14 +98,24 @@ class _CheckReservationItem extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       left: SizeTheme.paddingLargeSize * 2,
                       right: SizeTheme.paddingLargeSize * 2,
-                      top: SizeTheme.paddingLargeSize,
-                      bottom: SizeTheme.paddingLargeSize * 2,
+                      top: SizeTheme.paddingMiddleSize,
+                      bottom: SizeTheme.paddingMiddleSize * 2,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TitledText(title: "From.", text: reservationDTO.from),
-                        TitledText(title: "From.", text: reservationDTO.to),
+                        TitledText(
+                          title: "From.",
+                          text: reservationDTO.type == Direction.toDaegu
+                              ? reservationDTO.station
+                              : "금오공대",
+                        ),
+                        TitledText(
+                          title: "From.",
+                          text: reservationDTO.type == Direction.toDaegu
+                              ? "금오공대"
+                              : reservationDTO.station,
+                        ),
                         Row(
                           children: [
                             Flexible(
@@ -132,15 +148,26 @@ class _CheckReservationItem extends StatelessWidget {
           flex: 1,
           child: TitledOutlinedContainer(
             title: "",
-            child: Column(
-              children: [
-                WrapOutlinedButton(
-                  onPressed: () async {
-                    await _showCancelDialog(context);
-                  },
-                  text: '예약 취소',
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: SizeTheme.paddingLargeSize,
+                right: SizeTheme.paddingLargeSize,
+                top: SizeTheme.paddingMiddleSize,
+                bottom: SizeTheme.paddingMiddleSize * 2,
+              ),
+              child: Column(
+                children: [
+                  TitledText(title: "버스 번호", text: reservationDTO.by),
+                  TitledText(title: "좌석", text: "${reservationDTO.seatNum}번"),
+                  const SizedBox(height: SizeTheme.paddingMiddleSize),
+                  WrapOutlinedButton(
+                    onPressed: () async {
+                      await _showCancelDialog(context);
+                    },
+                    text: '예약 취소',
+                  ),
+                ],
+              ),
             ),
           ),
         ),

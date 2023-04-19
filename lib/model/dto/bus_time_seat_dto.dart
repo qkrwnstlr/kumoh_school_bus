@@ -14,7 +14,7 @@ class BusTimeSeatDTO implements ResponseDTO {
   @override
   BusTimeSeatDTO.fromJson(Map<String, dynamic> json)
       : busTimeDTO = BusTimeDTO.fromJson(json['busTimeDTO']),
-        timeSeatList = (json['timeSeatDTO'] as List<Map<String, dynamic>>)
+        timeSeatList = (json['timeSeatList'] as List<dynamic>)
             .map((e) => TimeSeatDTO.fromJson(e))
             .toList();
 }

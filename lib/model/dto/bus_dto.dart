@@ -15,7 +15,7 @@ class BusDTO implements ResponseDTO {
   BusDTO.fromJson(Map<String, dynamic> json)
       : busNum = json['busNum'],
         busTimeSeatList =
-            (json['busTimeSeatList'] as List<Map<String, dynamic>>)
+            (json['busTimeSeatList'] as List<dynamic>)
                 .map((e) => BusTimeSeatDTO.fromJson(e))
                 .toList();
 

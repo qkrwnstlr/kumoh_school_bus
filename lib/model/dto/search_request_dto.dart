@@ -3,7 +3,7 @@ import 'package:kumoh_school_bus/model/dto/request_dto.dart';
 class SearchRequestDTO implements RequestDTO {
   String date;
   String type;
-  int station;
+  String station;
 
   SearchRequestDTO({
     required this.date,

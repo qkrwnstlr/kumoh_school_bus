@@ -17,21 +17,22 @@ class ReservationService {
 
   List<ReservationDTO> get reservationDTOList => _reservationDTOList;
 
-  Future requestReservationList() async {
-    _reservationDTOList.clear();
-    _reservationDTOList.addAll(await _repository.requestReservationList());
-  }
-
-  Future requestDeleteReservation(
-      ReservationDeleteRequestDTO requestDTO) async {
+  Future requestReservationList(String memberId) async {
     _reservationDTOList.clear();
     _reservationDTOList
-        .addAll(await _repository.requestDeleteReservation(requestDTO));
+        .addAll(await _repository.requestReservationList(memberId));
   }
 
-  Future requestAddReservation(ReservationAddRequestDTO requestDTO) async {
+  Future requestDeleteReservation(String reservationId, String memberId) async {
+    _reservationDTOList.clear();
+    _reservationDTOList.addAll(
+        await _repository.requestDeleteReservation(reservationId, memberId));
+  }
+
+  Future requestAddReservation(
+      ReservationAddRequestDTO requestDTO, String memberId) async {
     _reservationDTOList.clear();
     _reservationDTOList
-        .addAll(await _repository.requestAddReservation(requestDTO));
+        .addAll(await _repository.requestAddReservation(requestDTO, memberId));
   }
 }

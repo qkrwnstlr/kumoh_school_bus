@@ -11,6 +11,6 @@ class TimeSeatDTO implements ResponseDTO {
 
   @override
   TimeSeatDTO.fromJson(Map<String, dynamic> json)
-      : isReserved = json['isReserved'],
+      : isReserved = json['reserved'],
         seatNum = json['seatNum'];
 }

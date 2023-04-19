@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kumoh_school_bus/model/dto/login_dto.dart';
 
 import '../model/service/services.dart';
 
@@ -14,7 +15,10 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void login(BuildContext context, bool mounted) async {
-    await _memberService.login();
+    await _memberService.login(LoginDTO(
+      id: idController.text,
+      password: passwordController.text,
+    ));
     if (mounted) {
       Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
     }

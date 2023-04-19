@@ -1,7 +1,11 @@
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/model/repository/base_repository.dart';
 import 'package:kumoh_school_bus/type/member_type.dart';
 
-class MemberRepository {
+class MemberRepository implements BaseRepository {
+  @override
+  String path = "/auth";
+
   MemberRepository._privateConstructor();
 
   static final MemberRepository _instance =
@@ -11,16 +15,41 @@ class MemberRepository {
     return _instance;
   }
 
-  Future<MemberInfoDTO> login() async {
-    return MemberInfoDTO(
-      name: "name",
-      id: "studentID",
-      major: "major",
-      type: MemberType.member,
-    );
+  Future<MemberInfoDTO> login(LoginDTO loginDTO) async {
+    Map<String, dynamic>? response =
+        await BaseRepository.post('$path/signin', loginDTO.toJson());
+    print(response);
+    if (response == null) {
+      return MemberInfoDTO(
+        name: "name",
+        id: "studentID",
+        password: "password",
+        major: "major",
+        type: MemberType.member,
+      );
+    } else {
+      BaseRepository.setToken(response["token"]);
+      return MemberInfoDTO.fromJson(response);
+    }
   }
 
-  Future editInfo(String password) async {}
+  Future signup(MemberInfoDTO signupDTO) async {
+    await BaseRepository.post('$path/signup', signupDTO.toJson());
+  }
 
-  Future removeMember(String id) async {}
+  Future editInfo(String id, String password) async {
+    await BaseRepository.put('$path/edit', {
+      'loginId': id,
+      'password': password,
+    });
+  }
+
+  void logout() {
+    BaseRepository.removeToken();
+  }
+
+  Future removeMember(String id) async {
+    BaseRepository.removeToken();
+    await BaseRepository.delete('$path/remove/$id');
+  }
 }

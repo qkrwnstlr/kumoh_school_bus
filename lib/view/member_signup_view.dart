@@ -75,7 +75,7 @@ class _MemberSignupPageState extends State<_MemberSignupPage> {
             Hero(
               tag: "Button",
               child: CentralOutlinedButton(
-                  onPressed: () => _viewModel.signup(context), text: "회원가입"),
+                  onPressed: () => _viewModel.signup(context, mounted), text: "회원가입"),
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             VanillaTextButton(

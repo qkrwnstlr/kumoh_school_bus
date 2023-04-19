@@ -77,12 +77,15 @@ class ReservationViewModel extends ChangeNotifier {
   }
 
   Future onReservationButtonClicked(BuildContext context, bool mounted) async {
-    await _reservationService.requestAddReservation(ReservationAddRequestDTO(
-      from: direction == Direction.toGumi ? station.sName : "금오공대",
-      to: direction == Direction.toDaegu ? "금오공대" : station.sName,
-      by: bus.busNum,
-      when: dateDayFormat.format(reservationDate),
-    ));
+    await _reservationService.requestAddReservation(
+        ReservationAddRequestDTO(
+          station: station.sName,
+          by: bus.busNum,
+          when: onlyDateFormat.format(reservationDate),
+          departure: busTimeList[busTimeIndex].startTime,
+          seatNum: seatList[seatIndex],
+        ),
+        _memberService.memberInfoDTO!.id);
     if (mounted) Navigator.pushNamed(context, "/reservation/check");
   }
 

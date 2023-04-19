@@ -7,7 +7,7 @@ import 'package:kumoh_school_bus/util/date_format.dart';
 import '../type/types.dart';
 
 class MainViewModel extends ChangeNotifier {
-  final BusService _searchBusService = BusService();
+  final StationService _stationService = StationService();
   final BusService _busService = BusService();
 
   Direction direction = Direction.toDaegu;
@@ -17,8 +17,8 @@ class MainViewModel extends ChangeNotifier {
   Set<Marker> setOfMarkers = {};
 
   MainViewModel() {
-    _busService.requestStationList().then((value) {
-      stations = _searchBusService.stationDTOList;
+    _stationService.requestStationList().then((value) {
+      stations = _stationService.stationDTOList;
       setOfMarkers = stations
           .map((e) => e.toMarker(() {
         station = e;
@@ -40,11 +40,11 @@ class MainViewModel extends ChangeNotifier {
   }
 
   void navigateToReservationPage(BuildContext context, bool mounted) async {
-    await _searchBusService.requestSearchBus(
+    await _busService.requestSearchBus(
       SearchRequestDTO(
         date: onlyDateFormat.format(reservationDate),
         type: direction.toString(),
-        station: station!.sId,
+        station: station!.sName,
       ),
     );
     if (mounted) {

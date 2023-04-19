@@ -18,7 +18,9 @@ class SearchResponseDTO implements ResponseDTO {
 
   @override
   SearchResponseDTO.fromJson(Map<String, dynamic> json)
-      : busList = json['busTimeSeatList'],
+      : busList = (json['busList'] as List<dynamic>)
+            .map((e) => BusDTO.fromJson(e))
+            .toList(),
         direction = Direction.fromString(json['direction']),
         station = StationDTO.fromJson(json['station']),
         reservationDate = onlyDateFormat.parse(json['reservationDate']);

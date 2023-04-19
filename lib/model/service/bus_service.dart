@@ -12,15 +12,6 @@ class BusService {
 
   final BusRepository _repository = BusRepository();
 
-  final List<StationDTO> _stationDTOList = [];
-
-  List<StationDTO> get stationDTOList => _stationDTOList;
-
-  Future requestStationList() async {
-    _stationDTOList.clear();
-    _stationDTOList.addAll(await _repository.requestStationList());
-  }
-
   SearchResponseDTO? _searchResponseDTO;
 
   SearchResponseDTO? get searchResponseDTO => _searchResponseDTO;
