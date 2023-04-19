@@ -6,7 +6,7 @@ class MemberInfoDTO implements RequestDTO, ResponseDTO {
   String name;
   String id;
   String password;
-  String major;
+  Major major;
   MemberType type;
   String? token;
 
@@ -20,11 +20,11 @@ class MemberInfoDTO implements RequestDTO, ResponseDTO {
   });
 
   MemberInfoDTO.fromJson(Map<String, dynamic> json)
-      : name = "박준식",
+      : name = json['name'],
         //json['name'],
         id = json['loginId'],
         password = json['password'],
-        major = "컴퓨터공학과",
+        major = Major.fromString(json['major']),
         //json['major'],
         type = MemberType.fromString(json['type']),
         token = json['token'];
@@ -34,7 +34,7 @@ class MemberInfoDTO implements RequestDTO, ResponseDTO {
         'name': name,
         'loginId': id,
         'password': password,
-        'major': major,
+        'major': major.toString(),
         'type': type.toString(),
       };
 }

@@ -112,7 +112,7 @@ class MemberInfoItem extends StatelessWidget {
                       const SizedBox(height: SizeTheme.paddingMiddleSize),
                       TitledText(
                         title: "학과",
-                        text: userInfoDTO.major,
+                        text: userInfoDTO.major.toString(),
                         backgroundColor: ColorTheme.backgroundMainColor,
                       ),
                     ],

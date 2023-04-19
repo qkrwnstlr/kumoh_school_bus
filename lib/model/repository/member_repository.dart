@@ -1,5 +1,6 @@
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
 import 'package:kumoh_school_bus/model/repository/base_repository.dart';
+import 'package:kumoh_school_bus/type/major.dart';
 import 'package:kumoh_school_bus/type/member_type.dart';
 
 class MemberRepository implements BaseRepository {
@@ -24,7 +25,7 @@ class MemberRepository implements BaseRepository {
         name: "name",
         id: "studentID",
         password: "password",
-        major: "major",
+        major: Major.computer,
         type: MemberType.member,
       );
     } else {

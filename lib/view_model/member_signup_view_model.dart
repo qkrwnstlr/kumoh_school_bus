@@ -7,6 +7,11 @@ class MemberSignupViewModel extends ChangeNotifier {
   late final TextEditingController idController;
   late final TextEditingController passwordController;
   late final TextEditingController checkPasswordController;
+  late final TextEditingController nameController;
+
+  late List<Major> majorList;
+  late int majorIndex;
+  late Major major;
 
   final MemberService _memberService = MemberService();
 
@@ -14,6 +19,13 @@ class MemberSignupViewModel extends ChangeNotifier {
     idController = TextEditingController(text: '');
     passwordController = TextEditingController(text: '');
     checkPasswordController = TextEditingController(text: '');
+    nameController = TextEditingController(text: '');
+  }
+
+  void onMajorChanged(dynamic value) {
+    majorIndex = majorList.indexOf(value);
+    major = majorList[majorIndex];
+    notifyListeners();
   }
 
   void signup(BuildContext context, bool mounted) async {
@@ -21,8 +33,8 @@ class MemberSignupViewModel extends ChangeNotifier {
       id: idController.text,
       password: passwordController.text,
       type: MemberType.member,
-      name: '박준식',
-      major: '컴퓨터공학과',
+      name: nameController.text,
+      major: major,
     ));
     if(mounted) Navigator.pop(context);
   }

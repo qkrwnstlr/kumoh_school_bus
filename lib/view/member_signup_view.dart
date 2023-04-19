@@ -48,7 +48,7 @@ class _MemberSignupPageState extends State<_MemberSignupPage> {
             TitledTextFormField(
               labelText: "ID",
               hintText: "ID",
-              prefixIcon: Icons.person,
+              prefixIcon: Icons.people,
               keyboardType: TextInputType.text,
               validator: null,
               controller: _viewModel.idController,
@@ -72,6 +72,21 @@ class _MemberSignupPageState extends State<_MemberSignupPage> {
               controller: _viewModel.checkPasswordController,
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
+            TitledTextFormField(
+              labelText: "이름",
+              hintText: "Check Password",
+              prefixIcon: Icons.assignment_ind,
+              keyboardType: TextInputType.text,
+              validator: null,
+              controller: _viewModel.checkPasswordController,
+            ),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            VanillaDropdownMenu(
+              value: _viewModel.major,
+              items: _viewModel.majorList,
+              onChanged: _viewModel.onMajorChanged,
+              isExpanded: true,
+            ),
             Hero(
               tag: "Button",
               child: CentralOutlinedButton(
