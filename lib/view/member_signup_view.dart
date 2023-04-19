@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kumoh_school_bus/view_model/user_signup_view_model.dart';
+import 'package:kumoh_school_bus/view_model/member_signup_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/themes.dart';
