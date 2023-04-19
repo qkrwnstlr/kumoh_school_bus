@@ -78,7 +78,7 @@ class _DriverSignupPageState extends State<_DriverSignupPage> {
               prefixIcon: Icons.assignment_ind,
               keyboardType: TextInputType.text,
               validator: null,
-              controller: _viewModel.checkPasswordController,
+              controller: _viewModel.nameController,
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             Hero(

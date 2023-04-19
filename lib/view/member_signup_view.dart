@@ -78,7 +78,7 @@ class _MemberSignupPageState extends State<_MemberSignupPage> {
               prefixIcon: Icons.assignment_ind,
               keyboardType: TextInputType.text,
               validator: null,
-              controller: _viewModel.checkPasswordController,
+              controller: _viewModel.nameController,
             ),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             TitledDropdownMenu(
