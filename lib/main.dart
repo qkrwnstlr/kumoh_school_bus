@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
                 '/signup/user': (context) => const MemberSignupView(),
                 '/signup/driver': (context) => const DriverSignupView(),
                 '/': (context) => const MainView(),
+                '/driver': (context) => const DriverView(),
                 '/reservation': (context) => const ReservationView(),
                 '/reservation/check': (context) => const CheckReservationView(),
                 '/user/info': (context) => const MemberInfoView(),

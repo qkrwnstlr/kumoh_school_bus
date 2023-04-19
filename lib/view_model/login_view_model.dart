@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/login_dto.dart';
+import 'package:kumoh_school_bus/type/member_type.dart';
 
 import '../model/service/services.dart';
 
@@ -20,7 +21,11 @@ class LoginViewModel extends ChangeNotifier {
       password: passwordController.text,
     ));
     if (mounted) {
-      Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+      if(_memberService.memberInfoDTO!.type == MemberType.driver){
+        Navigator.pushNamedAndRemoveUntil(context, "/driver", (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+      }
     }
   }
 
