@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/view_model/driver_signup_view_model.dart';
-import 'package:kumoh_school_bus/view_model/member_signup_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/themes.dart';
@@ -47,10 +46,10 @@ class _DriverSignupPageState extends State<_DriverSignupPage> {
             const Hero(tag: "AppLogo", child: AppLogo()),
             const SizedBox(height: SizeTheme.paddingMiddleSize),
             TitledTextFormField(
-              labelText: "ID",
-              hintText: "ID",
-              prefixIcon: Icons.person,
-              keyboardType: TextInputType.text,
+              labelText: "전화번호",
+              hintText: "Phone Number",
+              prefixIcon: Icons.phone,
+              keyboardType: TextInputType.number,
               validator: null,
               controller: _viewModel.idController,
             ),
