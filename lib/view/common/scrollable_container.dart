@@ -21,7 +21,7 @@ class ScrollableContainer extends StatelessWidget {
                 vertical: MediaQuery.of(context).size.width * 0.05),
             child: Center(
               child: Container(
-                constraints: const BoxConstraints(maxWidth: 600),
+                constraints: const BoxConstraints(maxWidth: 700),
                 child: child,
               ),
             ),
