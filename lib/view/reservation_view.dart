@@ -67,7 +67,7 @@ class _ReservationPageState extends State<_ReservationPage> {
                       isExpanded: false,
                     ),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
-                    const Text("도착 시간:",
+                    const Text("소요 시간:",
                         style: TextStyleTheme.textMainStyleMiddle),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
                     Text(_viewModel.currentTime.endTime,
