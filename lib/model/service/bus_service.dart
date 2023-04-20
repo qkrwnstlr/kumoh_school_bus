@@ -1,4 +1,5 @@
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/model/dto/select_response_dto.dart';
 import 'package:kumoh_school_bus/model/repository/bus_repository.dart';
 
 class BusService {
@@ -16,11 +17,19 @@ class BusService {
 
   SearchResponseDTO? get searchResponseDTO => _searchResponseDTO;
 
+  List<SelectResponseDTO>? _selectResponseList;
+
+  List<SelectResponseDTO>? get selectResponseList => _selectResponseList;
+
   Future requestSearchBus(SearchRequestDTO requestDTO) async {
     _searchResponseDTO = await _repository.requestSearchBus(requestDTO);
   }
 
   void clearSearchResponseDTO() {
     _searchResponseDTO = null;
+  }
+
+  Future requestSelectBus() async {
+    _selectResponseList = await _repository.requestSelectBus();
   }
 }

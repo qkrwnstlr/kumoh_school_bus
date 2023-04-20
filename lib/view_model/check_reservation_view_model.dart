@@ -9,7 +9,7 @@ class CheckReservationViewModel extends ChangeNotifier {
   late List<ReservationDTO> reservationList = [];
 
   CheckReservationViewModel() {
-    _reservationService.requestReservationList(_memberService.memberInfoDTO!.id).then((value) {
+    _reservationService.requestReservationListByMember(_memberService.memberInfoDTO!.id).then((value) {
       reservationList = _reservationService.reservationDTOList;
       notifyListeners();
     });

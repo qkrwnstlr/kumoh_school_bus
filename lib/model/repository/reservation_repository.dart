@@ -1,3 +1,4 @@
+import 'package:kumoh_school_bus/model/dto/bus_time_reservation_dto.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
 import 'package:kumoh_school_bus/model/repository/base_repository.dart';
 import 'package:kumoh_school_bus/type/types.dart';
@@ -15,7 +16,13 @@ class ReservationRepository implements BaseRepository {
     return _instance;
   }
 
-  Future<List<ReservationDTO>> requestReservationList(String memberId) async {
+  Future<BusTimeReservationDTO> requestReservationListByBus(String busTimeId) async {
+    Map<String, dynamic>? json = await BaseRepository.get("$path/bus/$busTimeId");
+    if(json == null) throw Exception("request json is null");
+    return BusTimeReservationDTO.fromJson(json);
+  }
+
+  Future<List<ReservationDTO>> requestReservationListByMember(String memberId) async {
     Map<String, dynamic>? json = await BaseRepository.get("$path/$memberId");
     if (json == null) {
       return [

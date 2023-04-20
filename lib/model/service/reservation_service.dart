@@ -17,10 +17,10 @@ class ReservationService {
 
   List<ReservationDTO> get reservationDTOList => _reservationDTOList;
 
-  Future requestReservationList(String memberId) async {
+  Future requestReservationListByMember(String memberId) async {
     _reservationDTOList.clear();
     _reservationDTOList
-        .addAll(await _repository.requestReservationList(memberId));
+        .addAll(await _repository.requestReservationListByMember(memberId));
   }
 
   Future requestDeleteReservation(String reservationId, String memberId) async {

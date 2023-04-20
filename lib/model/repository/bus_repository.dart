@@ -1,4 +1,5 @@
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
+import 'package:kumoh_school_bus/model/dto/select_response_dto.dart';
 import 'package:kumoh_school_bus/type/types.dart';
 import 'package:kumoh_school_bus/util/date_format.dart';
 
@@ -18,7 +19,8 @@ class BusRepository implements BaseRepository {
 
   Future<SearchResponseDTO> requestSearchBus(
       SearchRequestDTO requestDTO) async {
-    Map<String, dynamic>? json = await BaseRepository.post("$path/", requestDTO.toJson());
+    Map<String, dynamic>? json =
+        await BaseRepository.post("$path/", requestDTO.toJson());
     if (json == null) {
       return SearchResponseDTO(
         busList: [
@@ -89,5 +91,13 @@ class BusRepository implements BaseRepository {
     } else {
       return SearchResponseDTO.fromJson(json);
     }
+  }
+
+  Future<List<SelectResponseDTO>> requestSelectBus() async {
+    Map<String, dynamic>? json = await BaseRepository.get("$path/select");
+    if (json == null) throw Exception("");
+    return (json["data"] as List<dynamic>)
+        .map((e) => SelectResponseDTO.fromJson(e))
+        .toList();
   }
 }
