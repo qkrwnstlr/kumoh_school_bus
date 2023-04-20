@@ -44,13 +44,7 @@ abstract class BaseRepository {
       const headers = {"Accept": "application/json"};
       final res = await http.get(uri, headers: headers);
       log(json.encode(json.decode(utf8.decode(res.bodyBytes))));
-      // var uri = Uri(
-      //   scheme: "https",
-      //   // host: '', //host 넣어줘야함?
-      //   path: path, // ?? _baseUrl + path
-      //   queryParameters: queryParams,
-      // );
-      // final res = await http.get(uri, headers: _headers);
+      if(res.bodyBytes.isEmpty) return {};
       switch (res.statusCode) {
         case 200:
           return json.decode(utf8.decode(res.bodyBytes));
@@ -67,6 +61,8 @@ abstract class BaseRepository {
     try {
       final res = await http.post(Uri.parse(_baseUrl + path),
           headers: _headers, body: json.encode(body));
+      log(res.body);
+      if(res.bodyBytes.isEmpty) return {};
       switch (res.statusCode) {
         case 200:
           return json.decode(utf8.decode(res.bodyBytes));
@@ -84,6 +80,7 @@ abstract class BaseRepository {
       final res = await http.put(Uri.parse(_baseUrl + path),
           headers: _headers, body: jsonEncode(body));
       log(res.body);
+      if(res.bodyBytes.isEmpty) return {};
       switch (res.statusCode) {
         case 200:
           return json.decode(utf8.decode(res.bodyBytes));
@@ -99,6 +96,7 @@ abstract class BaseRepository {
     try {
       final res =
           await http.delete(Uri.parse(_baseUrl + path), headers: _headers);
+      if(res.bodyBytes.isEmpty) return {};
       switch (res.statusCode) {
         case 200:
           return json.decode(utf8.decode(res.bodyBytes));

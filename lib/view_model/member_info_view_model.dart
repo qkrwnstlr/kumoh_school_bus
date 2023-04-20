@@ -24,7 +24,7 @@ class MemberInfoViewModel extends ChangeNotifier {
     });
   }
 
-  Future onEditButtonClick(BuildContext context) async {
+  Future onEditButtonClick(BuildContext context, bool mounted) async {
     if (passwordController.text.isEmpty &&
         checkPasswordController.text.isEmpty) {
       await BasicAlterDialog.showWarningDialog(context, "모든 데이터를 입력해주세요");
@@ -36,7 +36,10 @@ class MemberInfoViewModel extends ChangeNotifier {
     }
     try {
       await _memberService.editInfo(passwordController.text);
-    } catch (e) {
+      if (mounted) {
+        Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+      }    } catch (e) {
+      print(e);
       BasicAlterDialog.showWarningDialog(context, "회원 정보 수정에 실패했습니다.");
     }
   }

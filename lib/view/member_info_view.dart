@@ -49,7 +49,7 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
               userInfoDTO: _viewModel.memberInfoDTO!,
               onRemoveButtonClick: () =>
                   _viewModel.onRemoveButtonClick(context, mounted),
-              onEditButtonClick: () => _viewModel.onEditButtonClick(context),
+              onEditButtonClick: () => _viewModel.onEditButtonClick(context, mounted),
               passwordController: _viewModel.passwordController,
               checkPasswordController: _viewModel.checkPasswordController,
             ),
