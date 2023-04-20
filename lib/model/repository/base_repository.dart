@@ -28,7 +28,7 @@ abstract class BaseRepository {
         case 200:
           return json.decode(utf8.decode(res.bodyBytes));
         default:
-          throw Exception("http error (${res.statusCode}) : ${res.body}");
+          throw Exception("http error (${res.statusCode})");
       }
     } catch (e) {
       rethrow;

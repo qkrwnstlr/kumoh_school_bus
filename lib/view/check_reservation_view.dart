@@ -116,8 +116,7 @@ class _CheckReservationItem extends StatelessWidget {
                                     : reservationDTO.station,
                               ),
                             ),
-                            const SizedBox(
-                                width: SizeTheme.paddingLargeSize),
+                            const SizedBox(width: SizeTheme.paddingLargeSize),
                             Flexible(
                               flex: 1,
                               child: TitledText(
@@ -138,8 +137,7 @@ class _CheckReservationItem extends StatelessWidget {
                                 text: reservationDTO.by,
                               ),
                             ),
-                            const SizedBox(
-                                width: SizeTheme.paddingLargeSize),
+                            const SizedBox(width: SizeTheme.paddingLargeSize),
                             Flexible(
                               flex: 1,
                               child: TitledText(
@@ -154,16 +152,15 @@ class _CheckReservationItem extends StatelessWidget {
                             Flexible(
                               flex: 1,
                               child: TitledText(
-                                title: "at.",
+                                title: "At.",
                                 text: reservationDTO.at,
                               ),
                             ),
-                            const SizedBox(
-                                width: SizeTheme.paddingLargeSize),
+                            const SizedBox(width: SizeTheme.paddingLargeSize),
                             Flexible(
                               flex: 1,
                               child: TitledText(
-                                title: "taken.",
+                                title: "While.",
                                 text: "${reservationDTO.taken}분",
                               ),
                             ),
@@ -221,20 +218,29 @@ class _CheckReservationItem extends StatelessWidget {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('예약을 취소하시겠습니다?'),
+                Text(
+                  '예약을 취소하시겠습니다?',
+                  style: TextStyleTheme.textMainStyleMiddle,
+                ),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('예'),
+              child: const Text(
+                '예',
+                style: TextStyleTheme.textMainStyleMiddle,
+              ),
               onPressed: () {
                 onCancelButtonClick();
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text('아니요'),
+              child: const Text(
+                '아니요',
+                style: TextStyleTheme.textMainStyleMiddle,
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
