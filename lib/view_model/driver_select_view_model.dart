@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/select_response_dto.dart';
 import 'package:kumoh_school_bus/model/service/bus_service.dart';
 import 'package:kumoh_school_bus/model/service/bus_time_reservation_service.dart';
+import 'package:kumoh_school_bus/view/common/basic_alter_dailog.dart';
 
 class DriverSelectViewModel extends ChangeNotifier {
   final BusTimeSeatReservationService _reservationService =
@@ -26,9 +27,13 @@ class DriverSelectViewModel extends ChangeNotifier {
   }
 
   Future onBusTimeSelect(BuildContext context, bool mounted, String busTimeId) async {
-    await _reservationService.requestReservationListByBus(busTimeId);
-    if(mounted) {
-      Navigator.pushNamedAndRemoveUntil(context, "/driver", (route) => false);
+    try {
+      await _reservationService.requestReservationListByBus(busTimeId);
+      if (mounted) {
+        Navigator.pushNamedAndRemoveUntil(context, "/driver", (route) => false);
+      }
+    } catch (e) {
+      BasicAlterDialog.showWarningDialog(context, "해당하는 버스가 없습니다.");
     }
   }
 }

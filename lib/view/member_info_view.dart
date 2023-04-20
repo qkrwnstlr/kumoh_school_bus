@@ -44,7 +44,7 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
           userInfoDTO: _viewModel.memberInfoDTO!,
           onRemoveButtonClick: () =>
               _viewModel.onRemoveButtonClick(context, mounted),
-          onEditButtonClick: _viewModel.onEditButtonClick,
+          onEditButtonClick: () => _viewModel.onEditButtonClick(context),
           passwordController: _viewModel.passwordController,
           checkPasswordController: _viewModel.checkPasswordController,
         ),
@@ -55,7 +55,7 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
 
 class MemberInfoItem extends StatelessWidget {
   final MemberInfoDTO userInfoDTO;
-  final Future<bool> Function() onEditButtonClick;
+  final Future Function() onEditButtonClick;
   final Future Function() onRemoveButtonClick;
   final TextEditingController passwordController;
   final TextEditingController checkPasswordController;
@@ -182,9 +182,8 @@ class MemberInfoItem extends StatelessWidget {
                 style: TextStyleTheme.textMainStyleMiddle,
               ),
               onPressed: () async {
-                if (await onEditButtonClick()) {
-                  Navigator.of(context).pop();
-                }
+                Navigator.of(context).pop();
+                await onEditButtonClick();
               },
             ),
             TextButton(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
 import 'package:kumoh_school_bus/type/direction.dart';
 import 'package:kumoh_school_bus/util/date_format.dart';
+import 'package:kumoh_school_bus/view/common/basic_alter_dailog.dart';
 
 import '../model/service/services.dart';
 
@@ -77,16 +78,20 @@ class ReservationViewModel extends ChangeNotifier {
   }
 
   Future onReservationButtonClicked(BuildContext context, bool mounted) async {
-    await _reservationService.requestAddReservation(
-        ReservationAddRequestDTO(
-          station: station.sName,
-          by: bus.busNum,
-          when: onlyDateFormat.format(reservationDate),
-          departure: busTimeList[busTimeIndex].startTime,
-          seatNum: seatList[seatIndex],
-        ),
-        _memberService.memberInfoDTO!.id);
-    if (mounted) Navigator.pushNamed(context, "/reservation/check");
+    try {
+      await _reservationService.requestAddReservation(
+          ReservationAddRequestDTO(
+            station: station.sName,
+            by: bus.busNum,
+            when: onlyDateFormat.format(reservationDate),
+            departure: busTimeList[busTimeIndex].startTime,
+            seatNum: seatList[seatIndex],
+          ),
+          _memberService.memberInfoDTO!.id);
+      if (mounted) Navigator.pushNamed(context, "/reservation/check");
+    } catch (e) {
+      BasicAlterDialog.showWarningDialog(context, "예약에 실패하였습니다.");
+    }
   }
 
   @override

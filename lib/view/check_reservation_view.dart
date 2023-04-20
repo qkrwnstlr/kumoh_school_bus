@@ -53,7 +53,7 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
               _CheckReservationItem(
                 reservationDTO: _viewModel.reservationList[index],
                 onCancelButtonClick: () => _viewModel
-                    .onCancelButtonClick(_viewModel.reservationList[index].id),
+                    .onCancelButtonClick(context, _viewModel.reservationList[index].id),
               ),
               const SizedBox(height: SizeTheme.paddingLargeSize)
             ],
