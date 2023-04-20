@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
 import 'package:kumoh_school_bus/model/service/services.dart';
 import 'package:kumoh_school_bus/util/date_format.dart';
-import 'package:kumoh_school_bus/view/common/basic_alter_dailog.dart';
+import 'package:kumoh_school_bus/view/common/basic_alter_dialog.dart';
 
 import '../type/types.dart';
 

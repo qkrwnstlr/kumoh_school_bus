@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/dtos.dart';
-import 'package:kumoh_school_bus/view/common/basic_alter_dailog.dart';
+import 'package:kumoh_school_bus/model/dto/reservation_chart_dto.dart';
+import 'package:kumoh_school_bus/view/common/basic_alter_dialog.dart';
 
 import '../model/service/services.dart';
 
@@ -11,6 +12,17 @@ class MemberInfoViewModel extends ChangeNotifier {
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController checkPasswordController = TextEditingController();
+
+  List<ReservationChartDTO> reservationCharDTOList = [];
+
+  final ReservationService _reservationService = ReservationService();
+
+  MemberInfoViewModel() {
+    _reservationService.requestReservationChart().then((value) {
+      reservationCharDTOList = value;
+      notifyListeners();
+    });
+  }
 
   Future onEditButtonClick(BuildContext context) async {
     if (passwordController.text.isEmpty &&

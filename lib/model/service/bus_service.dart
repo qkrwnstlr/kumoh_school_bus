@@ -21,6 +21,8 @@ class BusService {
 
   List<SelectResponseDTO>? get selectResponseList => _selectResponseList;
 
+  String? busTimeId;
+
   Future requestSearchBus(SearchRequestDTO requestDTO) async {
     _searchResponseDTO = await _repository.requestSearchBus(requestDTO);
   }

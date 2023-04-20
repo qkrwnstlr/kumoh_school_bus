@@ -41,32 +41,45 @@ class _DriverPageState extends State<_DriverPage> {
       backgroundImage: const AssetImage("assets/background.png"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount:
-              _viewModel.busTimeReservation.timeSeatReservationList.length,
-          itemBuilder: (BuildContext context, int index) => Column(
-            children: [
-              LeftSideOutlinedButton(
-                onPressed: () => _viewModel.busTimeReservation
-                            .timeSeatReservationList[index].memberDTO ==
-                        null
-                    ? null
-                    : _showReservationInfoDialog(
-                        context,
-                        _viewModel
-                            .busTimeReservation.timeSeatReservationList[index]),
-                text: _viewModel.busTimeReservation
-                    .timeSeatReservationList[index].timeSeatDTO.seatNum
-                    .toString(),
-                iconData: _viewModel.busTimeReservation
-                        .timeSeatReservationList[index].timeSeatDTO.isReserved
-                    ? Icons.circle_outlined
-                    : Icons.close,
+        child: Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount:
+                  _viewModel.busTimeReservation.timeSeatReservationList.length,
+              itemBuilder: (BuildContext context, int index) => Column(
+                children: [
+                  LeftSideOutlinedButton(
+                    onPressed: () => _viewModel.busTimeReservation
+                                .timeSeatReservationList[index].memberDTO ==
+                            null
+                        ? null
+                        : _showReservationInfoDialog(
+                            context,
+                            _viewModel.busTimeReservation
+                                .timeSeatReservationList[index],
+                          ),
+                    text: _viewModel.busTimeReservation
+                        .timeSeatReservationList[index].timeSeatDTO.seatNum
+                        .toString(),
+                    iconData: _viewModel
+                            .busTimeReservation
+                            .timeSeatReservationList[index]
+                            .timeSeatDTO
+                            .isReserved
+                        ? Icons.circle_outlined
+                        : Icons.close,
+                  ),
+                  const SizedBox(height: SizeTheme.paddingMiddleSize)
+                ],
               ),
-              const SizedBox(height: SizeTheme.paddingMiddleSize)
-            ],
-          ),
+            ),
+            const SizedBox(height: SizeTheme.paddingMiddleSize),
+            CentralOutlinedButton(
+              onPressed: () => _viewModel.finish(context, mounted),
+              text: '운행 종료',
+            ),
+          ],
         ),
       ),
     );
@@ -86,22 +99,19 @@ class _DriverPageState extends State<_DriverPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                TitledText(
-                  title: "이름",
-                  text: timeSeatReservationDTO.memberDTO!.name,
-                  backgroundColor: ColorTheme.backgroundMainColor,
+                Text(
+                  "이름 : ${timeSeatReservationDTO.memberDTO!.name}",
+                  style: TextStyleTheme.textMainStyleMiddle,
                 ),
                 const SizedBox(height: SizeTheme.paddingMiddleSize),
-                TitledText(
-                  title: "학번",
-                  text: timeSeatReservationDTO.memberDTO!.id,
-                  backgroundColor: ColorTheme.backgroundMainColor,
+                Text(
+                  "학번 : ${timeSeatReservationDTO.memberDTO!.id}",
+                  style: TextStyleTheme.textMainStyleMiddle,
                 ),
                 const SizedBox(height: SizeTheme.paddingMiddleSize),
-                TitledText(
-                  title: "학과",
-                  text: timeSeatReservationDTO.memberDTO!.major.toString(),
-                  backgroundColor: ColorTheme.backgroundMainColor,
+                Text(
+                  "학과 : ${timeSeatReservationDTO.memberDTO!.major.toString()}",
+                  style: TextStyleTheme.textMainStyleMiddle,
                 ),
               ],
             ),

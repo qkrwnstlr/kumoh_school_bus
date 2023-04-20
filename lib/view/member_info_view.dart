@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/member_info_dto.dart';
+import 'package:kumoh_school_bus/model/dto/reservation_chart_dto.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
 import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 import 'package:kumoh_school_bus/view_model/member_info_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MemberInfoView extends StatelessWidget {
   const MemberInfoView({Key? key}) : super(key: key);
@@ -41,13 +43,40 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
       backgroundImage: const AssetImage("assets/background.png"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
-        child: MemberInfoItem(
-          userInfoDTO: _viewModel.memberInfoDTO!,
-          onRemoveButtonClick: () =>
-              _viewModel.onRemoveButtonClick(context, mounted),
-          onEditButtonClick: () => _viewModel.onEditButtonClick(context),
-          passwordController: _viewModel.passwordController,
-          checkPasswordController: _viewModel.checkPasswordController,
+        child: Column(
+          children: [
+            MemberInfoItem(
+              userInfoDTO: _viewModel.memberInfoDTO!,
+              onRemoveButtonClick: () =>
+                  _viewModel.onRemoveButtonClick(context, mounted),
+              onEditButtonClick: () => _viewModel.onEditButtonClick(context),
+              passwordController: _viewModel.passwordController,
+              checkPasswordController: _viewModel.checkPasswordController,
+            ),
+            const SizedBox(height: SizeTheme.paddingLargeSize),
+            SfCartesianChart(
+              // Initialize category axis
+              title: ChartTitle(text: '지난 예약 기록'),
+              zoomPanBehavior: ZoomPanBehavior(
+                // Enables pinch zooming
+                enableMouseWheelZooming: true,
+                enablePinching: true,
+              ),
+              tooltipBehavior: TooltipBehavior(enable: true),
+              primaryXAxis: CategoryAxis(),
+              series: <ChartSeries>[
+                // Initialize line series
+                LineSeries<ReservationChartDTO, String>(
+                  name: '날짜',
+                  enableTooltip: true,
+                  dataSource: _viewModel.reservationCharDTOList,
+                  xValueMapper: (ReservationChartDTO days, _) => days.day,
+                  yValueMapper: (ReservationChartDTO days, _) => days.count,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

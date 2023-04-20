@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/model/dto/login_dto.dart';
 import 'package:kumoh_school_bus/type/member_type.dart';
-import 'package:kumoh_school_bus/view/common/basic_alter_dailog.dart';
+import 'package:kumoh_school_bus/view/common/basic_alter_dialog.dart';
 import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 
 import '../model/service/services.dart';
