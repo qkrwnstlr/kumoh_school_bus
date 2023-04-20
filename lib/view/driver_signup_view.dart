@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 import 'package:kumoh_school_bus/view_model/driver_signup_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,9 @@ class _DriverSignupPageState extends State<_DriverSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DrawerAppBarScaffold(
+      appBarTitle: 'Kumoh School Bus',
+      backgroundImage: const AssetImage("assets/background.png"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: Column(

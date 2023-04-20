@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kumoh_school_bus/theme/themes.dart';
 
 class ScrollableContainer extends StatelessWidget {
   final Color color;
@@ -10,18 +11,16 @@ class ScrollableContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Center(
       child: Container(
-        color: color,
-        child: GestureDetector(
-          onTap: FocusScope.of(context).unfocus,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.15,
-                vertical: MediaQuery.of(context).size.width * 0.05),
-            child: Center(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 700),
+        constraints: const BoxConstraints(maxWidth: 700, minHeight: 700),
+        color: Color(0xccffffff),//color,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(SizeTheme.paddingLargeSize),
+              child: GestureDetector(
+                onTap: FocusScope.of(context).unfocus,
                 child: child,
               ),
             ),

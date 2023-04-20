@@ -8,11 +8,15 @@ import 'central_app_bar.dart';
 class DrawerAppBarScaffold extends StatelessWidget {
   final String appBarTitle;
   final Widget body;
+  final bool disableDrawer;
+  final ImageProvider backgroundImage;
 
   const DrawerAppBarScaffold({
     Key? key,
     required this.appBarTitle,
     required this.body,
+    required this.backgroundImage,
+    this.disableDrawer = false,
   }) : super(key: key);
 
   @override
@@ -20,9 +24,12 @@ class DrawerAppBarScaffold extends StatelessWidget {
     return ChangeNotifierProvider<DrawerAppBarScaffoldController>(
       create: (_) => DrawerAppBarScaffoldController(),
       child: Scaffold(
-        appBar: CentralAppBar.build(context, title: appBarTitle,
-            leading: Builder(builder: (context) {
-          return IconButton(
+        extendBodyBehindAppBar: true,
+        appBar: CentralAppBar.build(
+          context,
+          title: appBarTitle,
+          leading: disableDrawer ? null : Builder(builder: (context) {
+            return IconButton(
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
@@ -30,9 +37,11 @@ class DrawerAppBarScaffold extends StatelessWidget {
                 Icons.menu,
                 color: ColorTheme.itemSubColor,
                 size: SizeTheme.iconMiddleSize,
-              ));
-        })),
-        drawer: Consumer<DrawerAppBarScaffoldController>(
+              ),
+            );
+          }),
+        ),
+        drawer: disableDrawer ? null : Consumer<DrawerAppBarScaffoldController>(
           builder: (context, controller, child) => NavigationDrawer(
             controller: NavigationDrawerController(
               context: context,
@@ -42,7 +51,15 @@ class DrawerAppBarScaffold extends StatelessWidget {
             ),
           ),
         ),
-        body: body,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: backgroundImage, //AssetImage('assets/background.png'), // 배경 이미지
+            ),
+          ),
+          child: body,
+        ),
       ),
     );
   }

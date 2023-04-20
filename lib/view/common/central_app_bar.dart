@@ -16,7 +16,7 @@ class CentralAppBar {
         title,
         style: TextStyleTheme.textMainStyleLarge,
       ),
-      backgroundColor: ColorTheme.backgroundMainColor,
+      backgroundColor: Colors.transparent,
       elevation: 0.0,
       leading: leading,
       actions: actions,

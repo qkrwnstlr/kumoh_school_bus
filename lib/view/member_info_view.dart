@@ -38,6 +38,7 @@ class _MemberInfoPageState extends State<_MemberInfoPage> {
   Widget build(BuildContext context) {
     return DrawerAppBarScaffold(
       appBarTitle: 'Kumoh School Bus',
+      backgroundImage: const AssetImage("assets/background.png"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: MemberInfoItem(

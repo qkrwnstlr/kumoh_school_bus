@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kumoh_school_bus/theme/themes.dart';
 import 'package:kumoh_school_bus/view/common/commons.dart';
+import 'package:kumoh_school_bus/view/common/drawer_app_bar_scaffold.dart';
 import 'package:provider/provider.dart';
 
 import '../view_model/login_view_model.dart';
@@ -35,7 +36,9 @@ class _LoginPageState extends State<_LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DrawerAppBarScaffold(
+      appBarTitle: 'Kumoh School Bus',
+      backgroundImage: const AssetImage("assets/background.png"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: Column(

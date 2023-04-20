@@ -50,3 +50,4 @@ flutter:
   assets:
     - .env
     - assets/profile.png
+    - assets/background.png

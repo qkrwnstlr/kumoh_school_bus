@@ -38,6 +38,7 @@ class _DriverPageState extends State<_DriverPage> {
   Widget build(BuildContext context) {
     return DrawerAppBarScaffold(
       appBarTitle: "Kumoh School Bus",
+      backgroundImage: const AssetImage("assets/background.png"),
       body: ScrollableContainer(
         color: ColorTheme.backgroundMainColor,
         child: ListView.builder(
