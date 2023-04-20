@@ -7,7 +7,9 @@ class ReservationDTO implements ResponseDTO {
   final String station;
   final String by;
   final String when;
+  final String taken;
   final int seatNum;
+  final String at;
 
   ReservationDTO({
     required this.id,
@@ -16,6 +18,8 @@ class ReservationDTO implements ResponseDTO {
     required this.by,
     required this.when,
     required this.seatNum,
+    required this.taken,
+    required this.at,
   });
 
   @override
@@ -25,5 +29,7 @@ class ReservationDTO implements ResponseDTO {
         station = json['station'],
         by = json['by'],
         when = json['when'],
-        seatNum = json['seatNum'];
+        seatNum = json['seatNum'],
+        taken = json['taken'],
+        at = json['at'];
 }

@@ -52,8 +52,8 @@ class _CheckReservationPageState extends State<_CheckReservationPage> {
             children: [
               _CheckReservationItem(
                 reservationDTO: _viewModel.reservationList[index],
-                onCancelButtonClick: () => _viewModel
-                    .onCancelButtonClick(context, _viewModel.reservationList[index].id),
+                onCancelButtonClick: () => _viewModel.onCancelButtonClick(
+                    context, _viewModel.reservationList[index].id),
               ),
               const SizedBox(height: SizeTheme.paddingLargeSize)
             ],
@@ -104,17 +104,29 @@ class _CheckReservationItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TitledText(
-                          title: "From.",
-                          text: reservationDTO.type == Direction.toDaegu
-                              ? reservationDTO.station
-                              : "금오공대",
-                        ),
-                        TitledText(
-                          title: "From.",
-                          text: reservationDTO.type == Direction.toDaegu
-                              ? "금오공대"
-                              : reservationDTO.station,
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: TitledText(
+                                title: "From.",
+                                text: reservationDTO.type == Direction.toDaegu
+                                    ? "금오공대"
+                                    : reservationDTO.station,
+                              ),
+                            ),
+                            const SizedBox(
+                                width: SizeTheme.paddingLargeSize),
+                            Flexible(
+                              flex: 1,
+                              child: TitledText(
+                                title: "To.",
+                                text: reservationDTO.type == Direction.toDaegu
+                                    ? reservationDTO.station
+                                    : "금오공대",
+                              ),
+                            ),
+                          ],
                         ),
                         Row(
                           children: [
@@ -126,12 +138,32 @@ class _CheckReservationItem extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(
-                                width: SizeTheme.paddingLargeSize * 2),
+                                width: SizeTheme.paddingLargeSize),
                             Flexible(
                               flex: 1,
                               child: TitledText(
                                 title: "When.",
                                 text: reservationDTO.when,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: TitledText(
+                                title: "at.",
+                                text: reservationDTO.at,
+                              ),
+                            ),
+                            const SizedBox(
+                                width: SizeTheme.paddingLargeSize),
+                            Flexible(
+                              flex: 1,
+                              child: TitledText(
+                                title: "taken.",
+                                text: "${reservationDTO.taken}분",
                               ),
                             ),
                           ],
@@ -160,7 +192,7 @@ class _CheckReservationItem extends StatelessWidget {
                   TitledText(title: "버스 번호", text: reservationDTO.by),
                   TitledText(title: "좌석", text: "${reservationDTO.seatNum}번"),
                   const SizedBox(height: SizeTheme.paddingMiddleSize),
-                  WrapOutlinedButton(
+                  CentralOutlinedButton(
                     onPressed: () async {
                       await _showCancelDialog(context);
                     },

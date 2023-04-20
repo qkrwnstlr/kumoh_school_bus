@@ -70,7 +70,7 @@ class _ReservationPageState extends State<_ReservationPage> {
                     const Text("소요 시간:",
                         style: TextStyleTheme.textMainStyleMiddle),
                     const SizedBox(width: SizeTheme.paddingMiddleSize),
-                    Text("${_viewModel.currentTime.endTime} 분",
+                    Text("${_viewModel.currentTime.endTime}분",
                         style: TextStyleTheme.textMainStyleMiddle),
                     Flexible(
                       flex: 1,
