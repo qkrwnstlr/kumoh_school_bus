@@ -13,7 +13,7 @@ class BusTimeSeatReservationService {
     return _instance;
   }
 
-  late final BusTimeReservationDTO _busTimeSeatReservationDTO;
+  late BusTimeReservationDTO _busTimeSeatReservationDTO;
 
   BusTimeReservationDTO get busTimeSeatReservationDTO =>
       _busTimeSeatReservationDTO;
@@ -21,5 +21,7 @@ class BusTimeSeatReservationService {
   Future requestReservationListByBus(String busTimeId) async {
     _busTimeSeatReservationDTO =
         await _repository.requestReservationListByBus(busTimeId);
+    _busTimeSeatReservationDTO.timeSeatReservationList
+        .sort((a, b) => a.timeSeatDTO.seatNum.compareTo(b.timeSeatDTO.seatNum));
   }
 }

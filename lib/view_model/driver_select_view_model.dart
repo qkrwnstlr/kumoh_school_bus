@@ -34,6 +34,7 @@ class DriverSelectViewModel extends ChangeNotifier {
       }
       _busService.busTimeId = busTimeId;
     } catch (e) {
+      print(e);
       BasicAlterDialog.showWarningDialog(context, "해당하는 버스가 없습니다.");
     }
   }
