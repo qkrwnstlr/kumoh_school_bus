@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v2.5.0
+      - uses: subosito/flutter-action@v2
         with:
           channel: 'dev'
+          flutter-version: '2.18.2'
+      - run: flutter --version
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter build web --release
