@@ -43,8 +43,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           AWS_EC2_METADATA_DISABLED: true
         run: |
+          cd build/web
           aws s3 sync \
             --region ap-northeast-2 \
             build s3://kumoh-futsal.kro.kr \
             --delete
-          working-directory: /build/web
