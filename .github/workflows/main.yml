@@ -47,4 +47,4 @@ jobs:
             --region ap-northeast-2 \
             build s3://kumoh-futsal.kro.kr \
             --delete
-          working-directory: ./kumoh_school_bus/build/web
+          working-directory: ./build/web
