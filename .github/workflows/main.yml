@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
       - run: flutter config --enable-web
       - name: Setting .env
         run: |
@@ -30,5 +27,5 @@ jobs:
         run: |
           aws s3 sync \
             --region ap-northeast-2 \
-            build s3://kumoh-futsal.kro.kr \
+            build ${{secrets.AWS_BUCKET_NAME}} \
             --delete
