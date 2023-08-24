@@ -1,6 +1,6 @@
 name: Flutter Web
 on:
-  push:
+  merge:
     branches:
       - master
 jobs:

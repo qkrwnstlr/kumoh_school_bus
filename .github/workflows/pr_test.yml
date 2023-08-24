@@ -1,0 +1,48 @@
+name: PR Test
+on:
+  pull_request:
+    branches: ["main", "develop"]
+
+jobs:
+  test-build:
+    name: Build Web
+    env:
+      my_secret: ${{secrets.commit_secret}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter config --enable-web
+      - name: Setting .env
+        run: |
+          echo "APP_NAME=${{ secrets.APP_NAME }}" >> .env
+          echo "GOOGLE_MAP_KEY=${{ secrets.GOOGLE_MAP_KEY }}" >> .env
+          cat .env
+      - run: flutter pub get
+      - run: flutter build web --release
+      - name: Upload build file
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-artifact
+          path: build/web
+      - name: if fail
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{github.token}}
+          script: |
+            const ref = "${{github.ref}}"
+            const pull_number = Number(ref.split("/")[2])
+            await github.pulls.createReview({
+              ...context.repo,
+              pull_number,
+              body:"Build Failed",
+              event: "REQUEST_CHANGES"
+            })
+            await github.pulls.update({
+              ...context.repo,
+              pull_number,
+              state: "closed"
+            })
+        if: failure()
