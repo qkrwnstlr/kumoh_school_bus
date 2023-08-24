@@ -44,8 +44,6 @@ jobs:
       - name: Sync Bucket
         run: aws s3 sync build/web --region ap-northeast-2 ${{secrets.AWS_BUCKET_NAME}} --delete
       - name: Invalidate cache CloudFront
+        run: aws cloudfront create-invalidation --distribution-id ${{secrets.AWS_DISTRIBUTION_ID}} --paths "/*"
         uses: chetan/invalidate-cloudfront-action@master
-        env:
-          DISTRIBUTION: ${{secrets.AWS_DISTRIBUTION_ID}}
-          PATHS: 'index.html'
         continue-on-error: true
