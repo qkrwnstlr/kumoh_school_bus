@@ -32,7 +32,6 @@ jobs:
             --region ap-northeast-2 \
             build ${{secrets.AWS_BUCKET_NAME}} \
             --delete
-
       - name: Invalidate cache CloudFront
         uses: chetan/invalidate-cloudfront-action@master
         env:
