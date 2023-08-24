@@ -32,7 +32,7 @@ jobs:
       AWS_EC2_METADATA_DISABLED: true
     steps:
       - name: Sync Bucket
-        run: aws s3 sync ./build/web --region ap-northeast-2 build ${{secrets.AWS_BUCKET_NAME}} --delete
+        run: aws s3 sync ./build/web --region ap-northeast-2 ${{secrets.AWS_BUCKET_NAME}} --delete
       - name: Invalidate cache CloudFront
         uses: chetan/invalidate-cloudfront-action@master
         env:
